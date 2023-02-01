@@ -5,6 +5,7 @@
   <title>Digital Filter Design</title>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -12,7 +13,7 @@
 <script src="https://code.highcharts.com/modules/draggable-points.js"></script>
 
 <body onload="draw();">
-  <h1 id="title">The Unit Circle Visualized</h1>
+  <h1 id="title">The Unit Circle Visualization</h1>
   <label>
     <input type="radio" id="zero" name="add" checked="true" />Add Zeros
     <input type="radio" id="pole" name="add" />Add Poles
@@ -53,6 +54,12 @@
       <canvas id="chart3" height="400" width="500"></canvas>
     </div>
   </div>
+  <body>
+    <div>
+      <canvas id="marina"></canvas>
+    </div>
+  </body>
+  
 
   <script src="/static/js/graph.js"></script>
 </body>

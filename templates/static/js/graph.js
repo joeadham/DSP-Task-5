@@ -86,11 +86,11 @@ function draw() {
   ctx.moveTo(centerX - unitCircleRadius, centerY);
   ctx.lineTo(centerX + unitCircleRadius, centerY);
 
-  ctx.fillStyle = "black";
+  ctx.fillStyle = "white";
   ctx.fill();
 
   ctx.lineWidth = 4;
-  ctx.strokeStyle = "#8a2f50";
+  ctx.strokeStyle = "black";
   ctx.stroke();
 
   ctx.closePath();
@@ -105,7 +105,7 @@ function draw() {
     ctx.moveTo(poles[i].x + poleSize, poles[i].y - poleSize);
     ctx.lineTo(poles[i].x - poleSize, poles[i].y + poleSize);
 
-    ctx.strokeStyle = "#ffffff";
+    ctx.strokeStyle = "black";
     ctx.stroke();
 
     ctx.closePath();
@@ -115,7 +115,7 @@ function draw() {
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
 
-    ctx.fillStyle = "#ffffff"; // Red color
+    ctx.fillStyle = "#black"; // Red color
 
     ctx.arc(zeros[i].x, zeros[i].y, zeroSize, 0, Math.PI * 2, true);
 
@@ -155,7 +155,7 @@ function drawCoordinates(x, y, flagZero) {
         y,
         isDragging: false
       });
-      ctx.fillStyle = "#ffffff"; // Red color
+      ctx.fillStyle = "black"; 
 
       ctx.arc(x, y, zeroSize, 0, Math.PI * 2, true);
 
@@ -167,7 +167,7 @@ function drawCoordinates(x, y, flagZero) {
           y,
           isDragging: false
         });
-        ctx.fillStyle = "#ffffff"; // Red color
+        ctx.fillStyle = "black"; 
 
         ctx.arc(x, y, zeroSize, 0, Math.PI * 2, true);
 
@@ -186,7 +186,7 @@ function drawCoordinates(x, y, flagZero) {
       ctx.moveTo(x + poleSize, y - poleSize);
       ctx.lineTo(x - poleSize, y + poleSize);
 
-      ctx.strokeStyle = "#ffffff";
+      ctx.strokeStyle = "black";
       ctx.stroke();
       if (conj) {
         y = 2 * centerY - y
@@ -200,7 +200,7 @@ function drawCoordinates(x, y, flagZero) {
         ctx.moveTo(x + poleSize, y - poleSize);
         ctx.lineTo(x - poleSize, y + poleSize);
 
-        ctx.strokeStyle = "#ffffff";
+        ctx.strokeStyle = "black";
         ctx.stroke();
       }
     }
@@ -476,17 +476,20 @@ WebFontConfig = {
 
 
 //marinaa
+canvas2 = document.getElementById('marina')
+
 
 let xvals = [];
 let yvals = [];
 let bvals = [];
 
-function setup_marina() {
-  createCanvas(720, 400);
-  strokeWeight(2);
-}
+// function setup_marina() {
+//   ctx.createCanvas(720, 400);
+//   ctx.strokeWeight(2);
+// }
 
 function draw_marina() {
+  let ctx = canvas2.getContext("2d");
   background(237, 34, 93);
 
   for (let i = 1; i < width; i++) {
@@ -504,21 +507,26 @@ function draw_marina() {
     bvals[width - 1] = 255;
   }
 
-  fill(255);
-  noStroke();
-  rect(0, height / 3, width, height / 3 + 1);
+  ctx.fill(255);
+  ctx.noStroke();
+  ctx.rect(0, height / 3, width, height / 3 + 1);
 
   for (let i = 1; i < width; i++) {
-    stroke(255);
-    point(i, xvals[i] / 3);
-    stroke(0);
-    point(i, height / 3 + yvals[i] / 3);
-    stroke(255);
-    line(
+    ctx.stroke(255);
+    ctx.point(i, xvals[i] / 3);
+    ctx.stroke(0);
+    ctx.point(i, height / 3 + yvals[i] / 3);
+    ctx.stroke(255);
+    ctx.line(
       i,
       (2 * height) / 3 + bvals[i] / 3,
       i,
       (2 * height) / 3 + bvals[i - 1] / 3
     );
   }
+  canvas.width = 720;
+canvas.height = 400;
+
+
+  draw();
 }
