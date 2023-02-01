@@ -1,0 +1,60 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <title>Digital Filter Design</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/draggable-points.js"></script>
+
+<body onload="draw();">
+  <h1 id="title">The Unit Circle Visualized</h1>
+  <label>
+    <input type="radio" id="zero" name="add" checked="true" />Add Zeros
+    <input type="radio" id="pole" name="add" />Add Poles
+  </label>
+  <input type="checkbox" id="conj">
+  Draw Conjugate
+  <label>
+    <button onclick="clearCanvas('zeros')">Clear Zeros</button>
+    <button onclick="clearCanvas('poles');">Clear Poles</button>
+    <button onclick="clearCanvas('all');">Clear All</button>
+  </label>
+  <div class="row">
+    <div class="column">
+      <canvas id="unitCircle" width="460" height="410"></canvas>
+    </div>
+    <div class="column">
+      <canvas id="chart" height="400" width="500"></canvas>
+      <label>Custom Filter</label>
+      <input type="text" id="text">
+      <input onclick="addFilter()" type="submit" value="Add">
+      <form style="padding:50px">
+        <div class="multipleSelection">
+          <div class="selectBox" onclick="showCheckboxes()">
+            <select>
+              <option>Select filters</option>
+            </select>
+            <div class="overSelect"></div>
+          </div>
+
+          <div id="checkBoxes">
+
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="column">
+      <canvas id="chart2" height="400" width="500"></canvas>
+      <canvas id="chart3" height="400" width="500"></canvas>
+    </div>
+  </div>
+
+  <script src="/static/js/graph.js"></script>
+</body>
+
+</html>
