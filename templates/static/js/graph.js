@@ -1,3 +1,4 @@
+
 //window.onload = function() {draw()}
 var unitCircleRadius = 200,
   zeroSize = 4,
@@ -476,57 +477,54 @@ WebFontConfig = {
 
 
 //marinaa
-canvas2 = document.getElementById('marina')
+// var canvas2 = document.getElementById('marina')
+// let xvals = [];
+// let yvals = [];
+// let bvals = [];
 
-
-let xvals = [];
-let yvals = [];
-let bvals = [];
-
-// function setup_marina() {
-//   ctx.createCanvas(720, 400);
-//   ctx.strokeWeight(2);
+// function setup() {
+//   createCanvas(720, 400);
+//   strokeWeight(2);
 // }
 
-function draw_marina() {
-  let ctx = canvas2.getContext("2d");
-  background(237, 34, 93);
+// function draw_marina() {
+//   var ctx = canvas2.getContext("2d");
+//   background(237, 34, 93);
 
-  for (let i = 1; i < width; i++) {
-    xvals[i - 1] = xvals[i];
-    yvals[i - 1] = yvals[i];
-    bvals[i - 1] = bvals[i];
-  }
-  // Add the new values to the end of the array
-  xvals[width - 1] = mouseX;
-  yvals[width - 1] = mouseY;
+//   for (let i = 1; i < width; i++) {
+//     xvals[i - 1] = xvals[i];
+//     yvals[i - 1] = yvals[i];
+//     bvals[i - 1] = bvals[i];
+//   }
+//   // Add the new values to the end of the array
+//   xvals[width - 1] = mouseX;
+//   yvals[width - 1] = mouseY;
 
-  if (mouseIsPressed) {
-    bvals[width - 1] = 0;
-  } else {
-    bvals[width - 1] = 255;
-  }
+//   if (mouseIsPressed) {
+//     bvals[width - 1] = 0;
+//   } else {
+//     bvals[width - 1] = 255;
+//   }
 
-  ctx.fill(255);
-  ctx.noStroke();
-  ctx.rect(0, height / 3, width, height / 3 + 1);
+//   ctx.fill(255);
+//   ctx.noStroke();
+//   rect(0, height / 3, width, height / 3 + 1);
 
-  for (let i = 1; i < width; i++) {
-    ctx.stroke(255);
-    ctx.point(i, xvals[i] / 3);
-    ctx.stroke(0);
-    ctx.point(i, height / 3 + yvals[i] / 3);
-    ctx.stroke(255);
-    ctx.line(
-      i,
-      (2 * height) / 3 + bvals[i] / 3,
-      i,
-      (2 * height) / 3 + bvals[i - 1] / 3
-    );
-  }
-  canvas.width = 720;
-canvas.height = 400;
+//   for (let i = 1; i < width; i++) {
+//     ctx.stroke(255);
+//     point(i, xvals[i] / 3);
+//     ctx.stroke(0);
+//     point(i, height / 3 + yvals[i] / 3);
+//     ctx.stroke(255);
+//     line(
+//       i,
+//       (2 * height) / 3 + bvals[i] / 3,
+//       i,
+//       (2 * height) / 3 + bvals[i - 1] / 3
+//     );
+//   }
+// }
 
 
-  draw();
-}
+
+
