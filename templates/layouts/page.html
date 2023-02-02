@@ -15,14 +15,11 @@
   <h1 id="title">The Unit Circle Visualization</h1>
   <label>
     <input type="radio" id="zero" name="add" checked="true" />Add Zeros
-    <input type="radio" id="pole" name="add" />Add Poles
-  </label>
-  <input type="checkbox" id="conj">
-  Draw Conjugate
-  <label>
-    <button onclick="clearCanvas('zeros')">Clear Zeros</button>
-    <button onclick="clearCanvas('poles');">Clear Poles</button>
-    <button onclick="clearCanvas('all');">Clear All</button>
+    <input type="radio" id="pole" name="add" />Add Poles</label>
+    <input type="checkbox" id="conj">Draw Conjugate<label>
+    <button class="button" onclick="clearCanvas('zeros')">Clear Zeros</button>
+    <button class="button" onclick="clearCanvas('poles');">Clear Poles</button>
+    <button class="button" onclick="clearCanvas('all');">Clear All</button>
   </label>
   <div class="row">
     <div class="column">
@@ -32,7 +29,7 @@
       <canvas id="chart" height="400" width="500"></canvas>
       <label>Custom Filter</label>
       <input type="text" id="text">
-      <input onclick="addFilter()" type="submit" value="Add">
+      <input class="button" onclick="addFilter()" type="submit" value="Add">
       <form style="padding:50px">
         <div class="multipleSelection">
           <div class="selectBox" onclick="showCheckboxes()">
@@ -56,7 +53,9 @@
 
 
     <div >
-      <canvas id="marina"></canvas>
+            <!-- 3shan yroh page tanya  -->
+      <button class="button" onclick=""> Mouse signal </button> 
+
     </div>
     <script src="/static/js/graph.js"></script>
    

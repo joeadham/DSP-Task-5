@@ -1,5 +1,5 @@
 html {
-  background-color:white;
+  background-color:rgb(237, 248, 248);
   font-family: "Open Sans Condensed";
   font-size: 18pt;
   font-weight: 100;
@@ -67,4 +67,30 @@ label {
 
 #checkBoxes label:hover {
   background-color: #4F615E;
+}
+
+
+
+/* marina */
+.button {
+  background-color: white; 
+  color: black; 
+  border: 2px solid rgb(5, 119, 119);
+}
+.button {
+  background-color: rgb(5, 119, 119);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: rgb(5, 119, 119);
+  color: white;
 }
