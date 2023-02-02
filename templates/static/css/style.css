@@ -94,3 +94,15 @@ label {
   background-color: rgb(5, 119, 119);
   color: white;
 }
+
+
+
+a { color: inherit; } 
+
+.canvas-container {
+  position: absolute;
+  top: 50px; /* or any other value to position it at the desired location */
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
