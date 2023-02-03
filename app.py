@@ -21,41 +21,25 @@ phases = []
 def main():
     return render_template("/layouts/page.html")
 
+
+
+
 @app.route("/mouse", methods=["POST", "GET"])
 def mouse():
 
     if request.method == 'POST':
+        #reads the csv file
         df = pd.read_csv(request.files.get('file'))
+        #plots the signal
         fig = px.line(df, x='t', y='signal')
 	
-	# Create graphJSON
+	# Create graphJSON, which is displayed in the webpage
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 	
         return render_template("/layouts/mouse.html",  graphJSON=graphJSON)
     return render_template("/layouts/mouse.html")
-# # Students data available in a list of list
-# 	students = [['Akash', 34, 'Sydney', 'Australia'],
-# 				['Rithika', 30, 'Coimbatore', 'India'],
-# 				['Priya', 31, 'Coimbatore', 'India'],
-# 				['Sandy', 32, 'Tokyo', 'Japan'],
-# 				['Praneeth', 16, 'New York', 'US'],
-# 				['Praveen', 17, 'Toronto', 'Canada']]
-	
-# 	# Convert list to dataframe and assign column values
-# 	df = pd.DataFrame(students,
-# 					columns=['Name', 'Age', 'City', 'Country'],
-# 					index=['a', 'b', 'c', 'd', 'e', 'f'])
-	
-# 	# Create Bar chart
-# 	fig = px.bar(df, x='Name', y='Age', color='City', barmode='group')
-	
-# 	# Create graphJSON
-# 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	
-# 	# Use render_template to pass graphJSON to html
-# 	return render_template('/layouts/mouse.html', graphJSON=graphJSON)
 
-#     # return render_template("/layouts/mouse.html", graphJSON=graphJSON)
+
 
 
 @app.route("/postmethod", methods=["POST"])
@@ -126,19 +110,7 @@ def post_javascript_data():
     }
     return jsonify(params)
 
-# @app.route('/upload', methods=['GET', 'POST'])
-# def upload_file():
-#     if request.method == 'POST':
-#         file = request.files['file']
-#         # save the file or process it further
-#         return render_template('/layouts/view_signal.html', file_name=file.filename)
-#     return render_template('/layouts/upload_file.html')
-# @app.route('/view_signal/<filename>')
-# def view_signal(filename):
-#     # read the signal file
-#     with open(filename, 'r') as file:
-#         signal = file.read()
-#     return render_template('/layouts/view_signal.html', signal=signal)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
