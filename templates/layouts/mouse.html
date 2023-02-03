@@ -10,22 +10,19 @@
 <body onload="draw();">
   <h1 id="title">Test the signal</h1>
  
-
-  <div class="row">  <div >
-    <script src = "/static/js/mouse.js"></script>
-  </div>
-</div>
   <div class="row">
     <div class="column">
-      
+        <script src = "/static/js/mouse.js"></script>
     </div>
     <div class="column">
-     helloooo
-     
+      <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+    </form>
     </div>
 
     <div class="column">
-        test test
+      <div id='inputGraph' class='chart'”></div>
     </div>
    
   </div>
@@ -36,7 +33,11 @@
       <button class="button" onclick=""> <a href="/">Home</a>  </button> 
 
     </div>
-   
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script type='text/javascript'>
+    var graphs = {{graphJSON | safe}};
+    Plotly.plot('inputGraph',graphs,{});
+    </script>
 
 </body>
 
