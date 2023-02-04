@@ -14,39 +14,50 @@
 <body onload="draw();">
   <h1 id="title">The Unit Circle Visualization</h1>
   <label>
+    <div class="row">
+    <div class="column">
     <input type="radio" id="zero" name="add" checked="true" />Add Zeros
     <input type="radio" id="pole" name="add" />Add Poles</label>
     <input type="checkbox" id="conj">Draw Conjugate<label>
     <button class="button" onclick="clearCanvas('zeros')">Clear Zeros</button>
     <button class="button" onclick="clearCanvas('poles');">Clear Poles</button>
     <button class="button" onclick="clearCanvas('all');">Clear All</button>
+  </div>
+
+  <div class="column">
+    <label>Custom Filter</label>
+    <input type="text" id="text">
+    <input class="button" onclick="addFilter()" type="submit" value="Add">
+    <form style="padding:50px">
+      <div class="multipleSelection">
+        <div class="selectBox" onclick="showCheckboxes()">
+          <select>
+            <option>Select filters</option>
+          </select>
+          <div class="overSelect"></div>
+        </div>
+
+        <div id="checkBoxes">
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
   </label>
   <div class="row">
     <div class="column">
-      <canvas id="unitCircle" width="460" height="410"></canvas>
-    </div>
-    <div class="column">
+     
       <canvas id="chart" height="400" width="500"></canvas>
-      <label>Custom Filter</label>
-      <input type="text" id="text">
-      <input class="button" onclick="addFilter()" type="submit" value="Add">
-      <form style="padding:50px">
-        <div class="multipleSelection">
-          <div class="selectBox" onclick="showCheckboxes()">
-            <select>
-              <option>Select filters</option>
-            </select>
-            <div class="overSelect"></div>
-          </div>
-
-          <div id="checkBoxes">
-
-          </div>
-        </div>
-      </form>
     </div>
     <div class="column">
-      <canvas id="chart2" height="400" width="500"></canvas>
+
+      <canvas id="unitCircle" width="460" height="410"></canvas>
+      
+       <canvas id="chart2" height="400" width="500"></canvas>
+    </div>
+    <div class="column">
+     
       <canvas id="chart3" height="400" width="500"></canvas>
     </div>
   </div>
