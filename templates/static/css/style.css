@@ -106,3 +106,15 @@ a { color: inherit; }
   right: 0;
   bottom: 0;
 }
+
+.text-field{
+  width: 60%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
+
+.select {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
