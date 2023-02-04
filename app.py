@@ -31,7 +31,9 @@ def main():
     return render_template("/layouts/page.html")
 
 
-
+@app.route("/mouse", methods=["POST", "GET"])
+def mouse():
+    return render_template("/layouts/mouse.html")
 
 
 @app.route("/postmethod", methods=["POST"])
