@@ -19,25 +19,17 @@ phases = []
 
 @app.route("/", methods=["POST", "GET"])
 def main():
-    return render_template("/layouts/page.html")
-
-
-
-
-@app.route("/mouse", methods=["POST", "GET"])
-def mouse():
-
     if request.method == 'POST':
         #reads the csv file
         df = pd.read_csv(request.files.get('file'))
         #plots the signal
         fig = px.line(df, x='t', y='signal')
-	
-	# Create graphJSON, which is displayed in the webpage
+    
+        # Create graphJSON, which is displayed in the webpage
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-	
-        return render_template("/layouts/mouse.html",  graphJSON=graphJSON)
-    return render_template("/layouts/mouse.html")
+        return render_template("/layouts/page.html",  graphJSON=graphJSON)
+    return render_template("/layouts/page.html")
+
 
 
 

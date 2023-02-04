@@ -19,38 +19,11 @@
     </div>
 
 
-    <div class="column">
-      <!-- upload signal area -->
-      <form method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Upload>
-    </form>
-    </div>
-
-
-    <div class="column">
-      <!-- uploaded signal shape -->
-      <div id='uploadedGraph' class='chart'”></div>
-    </div>
-   
-  </div>
-
-
     <div >
-            <!-- 3shan yroh page tanya  -->
-      <button class="button" onclick=""> <a href="/">Home</a>  </button> 
+      <!-- 3shan yroh page tanya  -->
+<button class="button" onclick=""> <a href="/">Home</a>  </button> 
 
-    </div>
-
-
-
-    
-    <!-- script to display uploaded signal -->
-    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <script type='text/javascript'>
-    var graphs = {{graphJSON | safe}};
-    Plotly.plot('uploadedGraph',graphs,{});
-    </script>
+</div>
 
 </body>
 

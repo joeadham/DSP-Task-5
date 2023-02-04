@@ -5,6 +5,7 @@ html {
   font-weight: 100;
   text-align: center;
   padding-top: 20px;
+
 }
 canvas {
   display: block;
@@ -33,7 +34,7 @@ label {
 
 .multipleSelection {
   width: 300px;
-  background-color: #BCC2C1;
+  background-color: #17b198;
 }
 
 .selectBox {
@@ -96,16 +97,7 @@ label {
 }
 
 
-
 a { color: inherit; } 
-
-.canvas-container {
-  position: absolute;
-  top: 50px; /* or any other value to position it at the desired location */
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 
 .text-field{
   width: 60%;
