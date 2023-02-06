@@ -1,6 +1,6 @@
 
 //window.onload = function() {draw()}
-var unitCircleRadius = 200,
+var unitCircleRadius = 90,
   zeroSize = 4,
   poleSize = 5,
   zeros = [],
@@ -91,7 +91,7 @@ function draw() {
   ctx.fill();
 
   ctx.lineWidth = 4;
-  ctx.strokeStyle = "black";
+  ctx.strokeStyle = "grey";
   ctx.stroke();
 
   ctx.closePath();

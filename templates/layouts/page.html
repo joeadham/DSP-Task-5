@@ -5,7 +5,6 @@
   <title>Digital Filter Design</title>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -14,7 +13,8 @@
 <body onload="draw();">
   <h1 id="title">The Unit Circle Visualization</h1>
   <label>
-    <div class="row">
+    <!-- column 1 row 1 -->
+  <div class="row">
     <div class="column">
     <input type="radio" id="zero" name="add" checked="true" />Add Zeros
     <input type="radio" id="pole" name="add" />Add Poles</label>
@@ -22,13 +22,152 @@
     <button class="button" onclick="clearCanvas('zeros')">Clear Zeros</button>
     <button class="button" onclick="clearCanvas('poles');">Clear Poles</button>
     <button class="button" onclick="clearCanvas('all');">Clear All</button>
-  </div>
-
-  <div class="column">
-    <label>Custom Filter</label>
-    <input class="text-field" type="text" id="text">
-    <input class="button" onclick="addFilter()" type="submit" value="Add">
-    <form style="padding:50px">
+    <div class="property">
+      <section class="slideshow" style="height: 250px;">
+         <span id="target-1"></span>
+         <span id="target-2"></span>
+         <span id="target-3"></span>
+         <span id="target-4"></span>
+         <!-- <a href="#" class="play">play</a> -->
+         <div class="slideshow-item item-1">
+            <div class="progress">-0.9</div>
+            <img src="..\static\img\-0.9.png" alt="-0.9" />
+            <a href="#target-19" class="arrow arrow-prev"></a>
+            <a href="#target-2" class="arrow arrow-next"></a>
+         </div>
+         <div class="slideshow-item item-2">
+            <div class="progress">-0.8</div>
+            <img src="..\static\img\-0.8.png" alt="-0.8" />
+            <a href="#target-1" class="arrow arrow-prev"></a>
+            <a href="#target-3" class="arrow arrow-next"></a>
+         </div>
+         <div class="slideshow-item item-3">
+            <div class="progress">-0.7</div>
+            <img src="..\static\img\-0.7.png" alt="" />
+            <a href="#target-2" class="arrow arrow-prev"></a>
+            <a href="#target-4" class="arrow arrow-next"></a>
+         </div>
+         <div class="slideshow-item item-4">
+            <div class="progress">-0.6</div>
+            <img src="..\static\img\-0.6.png" alt="" />
+            <a href="#target-3" class="arrow arrow-prev"></a>
+            <a href="#target-5" class="arrow arrow-next"></a>
+         </div>
+         <div class="slideshow-item item-5">
+          <div class="progress">-0.5</div>
+          <img src="..\static\img\-0.5.png" alt="" />
+          <a href="#target-4" class="arrow arrow-prev"></a>
+          <a href="#target-6" class="arrow arrow-next"></a>
+         </div>
+        <div class="slideshow-item item-6">
+          <div class="progress">-0.4</div>
+          <img src="..\static\img\-0.4.png" alt="" />
+          <a href="#target-5" class="arrow arrow-prev"></a>
+          <a href="#target-7" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-7">
+          <div class="progress">-0.3</div>
+          <img src="..\static\img\-0.3.png" alt="" />
+          <a href="#target-6" class="arrow arrow-prev"></a>
+          <a href="#target-8" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-8">
+          <div class="progress">-0.2</div>
+          <img src="..\static\img\-0.2.png" alt="" />
+          <a href="#target-7" class="arrow arrow-prev"></a>
+          <a href="#target-6" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-9">
+          <div class="progress">-0.1</div>
+          <img src="..\static\img\-0.1.png" alt="" />
+          <a href="#target-8" class="arrow arrow-prev"></a>
+          <a href="#target-10" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-10">
+          <div class="progress">zero</div>
+          <img src="..\static\img\0.png" alt="" />
+          <a href="#target-9" class="arrow arrow-prev"></a>
+          <a href="#target-11" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-11">
+          <div class="progress">0.1</div>
+          <img src="..\static\img\0.1.png" alt="" />
+          <a href="#target-10" class="arrow arrow-prev"></a>
+          <a href="#target-12" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-12">
+          <div class="progress">0.2</div>
+          <img src="..\static\img\0.2.png" alt="" />
+          <a href="#target-11" class="arrow arrow-prev"></a>
+          <a href="#target-13" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-13">
+          <div class="progress">0.3</div>
+          <img src="..\static\img\0.3.png" alt="" />
+          <a href="#target-12" class="arrow arrow-prev"></a>
+          <a href="#target-14" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-14">
+          <div class="progress">0.4</div>
+          <img src="..\static\img\0.4.png" alt="" />
+          <a href="#target-13" class="arrow arrow-prev"></a>
+          <a href="#target-15" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-15">
+          <div class="progress">0.5</div>
+          <img src="..\static\img\0.5.png" alt="" />
+          <a href="#target-14" class="arrow arrow-prev"></a>
+          <a href="#target-16" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-16">
+          <div class="progress">0.6</div>
+          <img src="..\static\img\0.6.png" alt="" />
+          <a href="#target-15" class="arrow arrow-prev"></a>
+          <a href="#target-17" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-17">
+          <div class="progress">0.7</div>
+          <img src="..\static\img\0.7.png" alt="" />
+          <a href="#target-16" class="arrow arrow-prev"></a>
+          <a href="#target-18" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-18">
+          <div class="progress">0.8</div>
+          <img src="..\static\img\0.8.png" alt="" />
+          <a href="#target-17" class="arrow arrow-prev"></a>
+          <a href="#target-19" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-19">
+          <div class="progress">0.9</div>
+          <img src="..\static\img\0.9.png" alt="" />
+          <a href="#target-18" class="arrow arrow-prev"></a>
+          <a href="#target-1" class="arrow arrow-next"></a>
+        </div>
+        
+      </section>
+    </div>
+    </div>
+    <!-- column 2 row 1 -->
+    <div class="column">
+      <label>Custom Filter</label>
+      <input class="text-field" type="text" id="text">
+      <input class="button" onclick="addFilter()" type="submit" value="Add">
+      <!-- 3shan yroh page tanya  -->
+      <button class="button" onclick=""> <a href = mouse>Mouse signal</a> </button>
+      <canvas id="unitCircle" width="200" height="200"></canvas>
+    </div>
+      <!-- column 3 row 1 -->
+    <div class="column">
+      <!-- upload signal area -->
+      <label>Upload Signal</label>
+      <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input class="button" type=submit value=Upload>
+      </form>
+      <!-- uploaded signal shape -->
+      <div id='uploadedGraph' class='chart'”></div>
+    </div>
+    <!-- <form style="padding:50px">
       <div class="multipleSelection">
         <div class="selectBox" onclick="showCheckboxes()">
           <select class="select">
@@ -36,190 +175,36 @@
           </select>
           <div class="overSelect"></div>
         </div>
-
         <div id="checkBoxes">
-
         </div>
       </div>
-    </form>
+    </form> -->
+
   </div>
-</div>
-  </label>
+  <!-- </label> -->
+  <!-- column 1 row 2 -->
   <div class="row">
     <div class="column">
-     
       <canvas id="chart" height="300" width="400"></canvas>
     </div>
+    <!-- column 2 row 2 -->
     <div class="column">
-
-      <canvas id="unitCircle" width="400" height="410"></canvas>
-      
-       <canvas id="chart2" height="300" width="400"></canvas>
+      <canvas id="chart2" height="300" width="400"></canvas>
     </div>
+    <!-- column 3 row 2 -->
     <div class="column">
-     
-    <div class="column">
-      <!-- upload signal area -->
-      <form method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Upload>
-    </form>
-    </div>
-
-
-    <div class="column">
-      <!-- uploaded signal shape -->
-      <div id='uploadedGraph' class='chart'”></div>
-    </div>
-   
-  </div>
-
-
-
-
-    <!-- script to display uploaded signal -->
-    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <script type='text/javascript'>
-    var graphs = {{graphJSON | safe}};
-    Plotly.plot('uploadedGraph',graphs,{});
-    </script>
-
-
       <canvas id="chart3" height="300" width="400"></canvas>
     </div>
   </div>
-  <div class="property">
-    <section class="slideshow" style="height: 250px;">
-       <span id="target-1"></span>
-       <span id="target-2"></span>
-       <span id="target-3"></span>
-       <span id="target-4"></span>
-       <!-- <a href="#" class="play">play</a> -->
-       <div class="slideshow-item item-1">
-          <div class="progress">1 of 19</div>
-          <img src="..\static\img\-0.9.png" alt="-0.9" />
-          <a href="#target-19" class="arrow arrow-prev"></a>
-          <a href="#target-2" class="arrow arrow-next"></a>
-       </div>
-       <div class="slideshow-item item-2">
-          <div class="progress">2 of 19</div>
-          <img src="..\static\img\-0.8.png" alt="-0.8" />
-          <a href="#target-1" class="arrow arrow-prev"></a>
-          <a href="#target-3" class="arrow arrow-next"></a>
-       </div>
-       <div class="slideshow-item item-3">
-          <div class="progress">3 of 19</div>
-          <img src="..\static\img\-0.7.png" alt="" />
-          <a href="#target-2" class="arrow arrow-prev"></a>
-          <a href="#target-4" class="arrow arrow-next"></a>
-       </div>
-       <div class="slideshow-item item-4">
-          <div class="progress">4 of 19</div>
-          <img src="..\static\img\-0.6.png" alt="" />
-          <a href="#target-3" class="arrow arrow-prev"></a>
-          <a href="#target-5" class="arrow arrow-next"></a>
-       </div>
-       <div class="slideshow-item item-5">
-        <div class="progress">5 of 19</div>
-        <img src="..\static\img\-0.5.png" alt="" />
-        <a href="#target-4" class="arrow arrow-prev"></a>
-        <a href="#target-6" class="arrow arrow-next"></a>
-       </div>
-      <div class="slideshow-item item-6">
-        <div class="progress">6 of 19</div>
-        <img src="..\static\img\-0.4.png" alt="" />
-        <a href="#target-5" class="arrow arrow-prev"></a>
-        <a href="#target-7" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-7">
-        <div class="progress">7 of 19</div>
-        <img src="..\static\img\-0.3.png" alt="" />
-        <a href="#target-6" class="arrow arrow-prev"></a>
-        <a href="#target-8" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-8">
-        <div class="progress">8 of 19</div>
-        <img src="..\static\img\-0.2.png" alt="" />
-        <a href="#target-7" class="arrow arrow-prev"></a>
-        <a href="#target-6" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-9">
-        <div class="progress">9 of 19</div>
-        <img src="..\static\img\-0.1.png" alt="" />
-        <a href="#target-8" class="arrow arrow-prev"></a>
-        <a href="#target-10" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-10">
-        <div class="progress">10 of 19</div>
-        <img src="..\static\img\0.png" alt="" />
-        <a href="#target-9" class="arrow arrow-prev"></a>
-        <a href="#target-11" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-11">
-        <div class="progress">11 of 19</div>
-        <img src="..\static\img\0.1.png" alt="" />
-        <a href="#target-10" class="arrow arrow-prev"></a>
-        <a href="#target-12" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-12">
-        <div class="progress">12 of 19</div>
-        <img src="..\static\img\0.2.png" alt="" />
-        <a href="#target-11" class="arrow arrow-prev"></a>
-        <a href="#target-13" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-13">
-        <div class="progress">13 of 19</div>
-        <img src="..\static\img\0.3.png" alt="" />
-        <a href="#target-12" class="arrow arrow-prev"></a>
-        <a href="#target-14" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-14">
-        <div class="progress">14 of 19</div>
-        <img src="..\static\img\0.4.png" alt="" />
-        <a href="#target-13" class="arrow arrow-prev"></a>
-        <a href="#target-15" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-15">
-        <div class="progress">15 of 19</div>
-        <img src="..\static\img\0.5.png" alt="" />
-        <a href="#target-14" class="arrow arrow-prev"></a>
-        <a href="#target-16" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-16">
-        <div class="progress">16 of 19</div>
-        <img src="..\static\img\0.6.png" alt="" />
-        <a href="#target-15" class="arrow arrow-prev"></a>
-        <a href="#target-17" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-17">
-        <div class="progress">17 of 19</div>
-        <img src="..\static\img\0.7.png" alt="" />
-        <a href="#target-16" class="arrow arrow-prev"></a>
-        <a href="#target-18" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-18">
-        <div class="progress">18 of 19</div>
-        <img src="..\static\img\0.8.png" alt="" />
-        <a href="#target-17" class="arrow arrow-prev"></a>
-        <a href="#target-19" class="arrow arrow-next"></a>
-      </div>
-      <div class="slideshow-item item-19">
-        <div class="progress">19 of 19</div>
-        <img src="..\static\img\0.9.png" alt="" />
-        <a href="#target-18" class="arrow arrow-prev"></a>
-        <a href="#target-1" class="arrow arrow-next"></a>
-      </div>
-      
-    </section>
- </div>
- 
-          <!-- 3shan yroh page tanya  -->
-    <button class="button" onclick=""> <a href = mouse>Mouse signal</a> </button> 
 
-  </div>
+
+
+
+  <!-- script to display uploaded signal -->
+  <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+  <script type='text/javascript'>var graphs = {{graphJSON | safe}};Plotly.plot('uploadedGraph',graphs,{});</script>
   <script src="/static/js/graph.js"></script>
    
 
 </body>
-
 </html>

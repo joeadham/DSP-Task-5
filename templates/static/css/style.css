@@ -5,23 +5,25 @@ html {
   font-weight: 100;
   text-align: center;
   padding-top: 20px;
+  margin: auto;
 
 }
 canvas {
   display: block;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 label {
-  padding: 5px;
+  padding: 10px;
   display: block;
   text-align: center;
 }
 
 .column {
   float: left;
-  padding-left: 150px;
+  padding-left: 100px;
   padding-right: 10px;
 }
 
@@ -67,59 +69,58 @@ label {
 }
 
 #checkBoxes label:hover {
-  background-color: #4F615E;
+  background-color: #43ddc4;
 }
 
 
 
 /* marina */
-.button {
+/* .button {
   background-color: white; 
   color: black; 
   border: 2px solid rgb(5, 119, 119);
-}
+} */
 .button {
   background-color: rgb(5, 119, 119);
   border: none;
   color: white;
-  padding: 10px 16px;
+  padding: 10px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
 .button:hover {
-  background-color: rgb(5, 119, 119);
-  color: white;
+  background-color: rgb(93, 126, 126);
+  color: rgb(255, 255, 255);
 }
 
 
 a { color: inherit; } 
 
 .text-field{
-  width: 60%;
+  width: 80%;
   padding: 12px 20px;
   box-sizing: border-box;
 }
 
-.select {
-  width: 100%;
+/* .select {
+  width: 80%;
   padding: 12px 20px;
   box-sizing: border-box;
-}
+} */
 
 .property {
-  width: 300px;
+  width: 400px;
   margin: auto;
 }
-/* Likewise, specify styles for slideshow class. Define a background color, border-radius, and keep its position relative. */
 
 .slideshow {
-  background: #e3d9d9;
-  border-radius: 7px;
+  background: rgb(237, 248, 248);
+  border-radius: 10px;
   margin-bottom: 20px;
   position: relative;
 }
@@ -150,14 +151,13 @@ a { color: inherit; }
   display: block;
   width: 50px;
   height: 100%;
-  background: url("data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%206%2016%22%20width%3D%226%22%20height%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m5%201-4%207%204%207%22%20fill%3D%22none%22%20stroke-width%3D%22.8%22%20opacity%3D%22.3%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22square%22%2F%3E%3Cpath%20d%3D%22m5%201-4%207%204%207%22%20fill%3D%22none%22%20stroke-width%3D%22.5%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22square%22%2F%3E%3C%2Fsvg%3E%0A") no-repeat center/30px;
+  /* background: url("data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%206%2016%22%20width%3D%226%22%20height%3D%2216%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m5%201-4%207%204%207%22%20fill%3D%22none%22%20stroke-width%3D%22.8%22%20opacity%3D%22.3%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22square%22%2F%3E%3Cpath%20d%3D%22m5%201-4%207%204%207%22%20fill%3D%22none%22%20stroke-width%3D%22.5%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22square%22%2F%3E%3C%2Fsvg%3E%0A") no-repeat center/30px; */
 }
 .arrow-next {
   right: 0;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
-/* The "progress" class is the container of the slideshow items numbers. Set its absolute position and set 20px value for the top and left properties respectively. You can place this number container to any corner of the slideshow. The values for the color and the font-family can be defined according to your needs. */
 
 .progress {
   position: absolute;
@@ -168,7 +168,7 @@ a { color: inherit; }
 }
 /* Actually, the play button is a link element. So, we need to convert it into a button. To do so, display it as inline-block, define an absolute position, and specify the background color. Likewise, define the 8px 16px value for the padding property and set 1px border. Similarly, declare other properties as mentioned below. */
 
-.play {
+/* .play {
   display: inline-block;
   position: absolute;
   bottom: 0;
@@ -189,15 +189,14 @@ a { color: inherit; }
   -webkit-transition: all 750ms ease;
   transition: all 750ms ease;
 }
-/* Use the CSS target pseudo-selector for the play button class in order to play the slideshow items. */
-/* 
+
 [id^="target"]:target ~ .play {
   -webkit-transition: all 750ms ease;
   transition: all 750ms ease;
   opacity: 1;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-}
+} */
   
 [id^="target"] {
   display: none;
@@ -254,14 +253,29 @@ a { color: inherit; }
     opacity: 1;
   }
 }
-/* Now, specify the animation for each slide item with delay time as described below. If you want to play your slideshow for one time only, use the “forwards” value instead of infinite. Similarly, you can increase/decrease slideshow speed by changing animation delay time. */
 
-.item-1, .item-2,.item-3, .item-4 ,.item-5 ,.item-6, .item-7,.item-8,.item-9,.item-10,.item-11, .item-12, .item-13, .item-14,.item-15, .item-16,.item-17,.item-18,.item-19 {
+.item-1, 
+.item-2,
+.item-3, 
+.item-4 ,
+.item-5 ,
+.item-6,
+.item-7,
+.item-8,
+.item-9,
+.item-10,
+.item-11,
+.item-12, 
+.item-13,
+.item-14,
+.item-15,
+.item-16,
+.item-17,
+.item-18,
+.item-19 {
   -webkit-animation: slideshow 16s ease 0s infinite;
           animation: slideshow 16s ease 0s infinite;
 }
-
-/* In order to switch the images on the next previous button click, use the CSS target pseudo-selector with each item and disable slideshow animation as described below: */
 
 #target-2:target ~ .item-2,
 #target-3:target ~ .item-3,
