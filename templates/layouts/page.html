@@ -163,11 +163,10 @@
 
       function requestData(filename)
       {
-        if (glopalFileName != filename){
-          return;
-        }
+        console.log(glopalFileName,filename);
+        
+        
         // Ajax call to get the Data from Flask
-        console.log(filename);
         $.ajax(
           {
               method: 'POST',
@@ -180,6 +179,9 @@
               },
               success: function (result, status, xhr) 
               {
+                if (glopalFileName != filename){
+                  return;
+                }
                   var seriesTemperature = chartTemperatue.series[0],
                       shiftTemperature = seriesTemperature.data.length > 20;
 
@@ -192,6 +194,7 @@
                   chartTemperatue.series[0].addPoint(data1, true, shiftTemperature);
                   console.log(result);
                   // call it again after one second
+                  
                   setTimeout(requestData(filename), 2000);  
               
               }
