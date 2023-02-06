@@ -18,13 +18,13 @@ var unitCircleRadius = 90,
   lineChart3 = 0,
   lambda = 0;
 
-for (let i = -0.9; i <= 0.9; i += 0.1) {
-  if (i.toFixed(1) != -0.0) {
-    document.getElementById("checkBoxes").innerHTML += "<input onclick  = \"freqResponse(" + i.toFixed(1) + ")\"  type=\"checkbox\" id=" + i.toFixed(1) + ">" + i.toFixed(1) + "<br>"
-  } else {
-    document.getElementById("checkBoxes").innerHTML += "<input onclick  = \"freqResponse(" + 0 + ")\" type=\"checkbox\" id=" + 0 + ">" + 0 + " <br> "
-  }
-}
+// for (let i = -0.9; i <= 0.9; i += 0.1) {
+//   if (i.toFixed(1) != -0.0) {
+//     document.getElementById("checkBoxes").innerHTML += "<input onclick  = \"freqResponse(" + i.toFixed(1) + ")\"  type=\"checkbox\" id=" + i.toFixed(1) + ">" + i.toFixed(1) + "<br>"
+//   } else {
+//     document.getElementById("checkBoxes").innerHTML += "<input onclick  = \"freqResponse(" + 0 + ")\" type=\"checkbox\" id=" + 0 + ">" + 0 + " <br> "
+//   }
+// }
 
 
 $("#unitCircle").click(function (event) {
