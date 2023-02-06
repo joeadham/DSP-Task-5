@@ -120,7 +120,7 @@
     </div>
     <script src="/static/js/graph.js"></script>
     <script>
-      var chartTemperatue;
+      var inputSignalChart;
       var glopalFileName;
       function getFileName(){
           var fileInput = document.getElementById('upload');   
@@ -129,7 +129,7 @@
 
 
           // --------------Chart 1 ----------------------------
-          chartTemperatue = new Highcharts.Chart({
+          inputSignalChart = new Highcharts.Chart({
               chart:
                   {
                   renderTo: 'input-signal'
@@ -182,16 +182,16 @@
                 if (glopalFileName != filename){
                   return;
                 }
-                  var seriesTemperature = chartTemperatue.series[0],
-                      shiftTemperature = seriesTemperature.data.length > 20;
+                  var inputChartSeries = inputSignalChart.series[0],
+                      inputShift = inputChartSeries.data.length > 20;
 
                   // Add the Point
-                  // Time Temperature\
+                  // Time input\
                   var data1 = [];
                   data1.push(result[0]);
                   data1.push(result[1]);
 
-                  chartTemperatue.series[0].addPoint(data1, true, shiftTemperature);
+                  inputSignalChart.series[0].addPoint(data1, true, inputShift);
                   console.log(result);
                   // call it again after one second
                   
