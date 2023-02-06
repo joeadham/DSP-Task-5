@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, make_response, render_template, request
+from flask import Flask, jsonify, make_response, render_template, request,session
 import os
 from scipy import signal
 import numpy as np
@@ -6,7 +6,7 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
-
+import time
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
 app.debug = False
@@ -19,18 +19,36 @@ phases = []
 
 @app.route("/", methods=["POST", "GET"])
 def main():
-    if request.method == 'POST':
-        #reads the csv file
-        df = pd.read_csv(request.files.get('file'))
-        #plots the signal
-        fig = px.line(df, x='t', y='signal')
-    
-        # Create graphJSON, which is displayed in the webpage
-        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-        return render_template("/layouts/page.html",  graphJSON=graphJSON)
+    if 'i' not in session:
+        session['i'] = 0
+    session['i'] = 0
+    if 'fileName' not in session:
+        session['fileName'] = ''
     return render_template("/layouts/page.html")
 
+@app.route('/data', methods=["GET", "POST"])
+def data():
+    if request.method == 'POST':
+        
+        filename = request.values['filename']
+        #reads the csv file
+        df = pd.read_csv(filename)
+        
+        if session['fileName'] != filename:
+            session['fileName'] = filename
+            session['i'] = 0
+        
+        #plots the signal
+        index = session['i']
+        # data = [time() * 1000,random()*100]
+        session['i'] += 1
+        print('-'*50)
+        print(index)
+        time.sleep(1)
+        return json.dumps({0: df.iloc[index%len(df)][0],1:df.iloc[index%len(df)][1]})
+    
 
+ 
 @app.route("/mouse", methods=["POST", "GET"])
 def mouse():
     return render_template("/layouts/mouse.html")
@@ -107,4 +125,4 @@ def post_javascript_data():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000,debug = True)

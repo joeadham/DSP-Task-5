@@ -3,6 +3,27 @@
 <head>
   <link rel="stylesheet" href="/static/css/style.css" />
   <title>Digital Filter Design</title>
+
+  <!-- Bootstraps Java Scipts Links -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+  <!-- JQuery links  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+  <!--High CHART LIVE  -->
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/highcharts-more.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+  <!--Gauge  -->
+  <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
+  
 </head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -61,8 +82,7 @@
     <div class="column">
       <!-- upload signal area -->
       <form method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Upload>
+        <input type=file name=file id="upload" onchange="getFileName()">
     </form>
     </div>
 
@@ -70,6 +90,14 @@
     <div class="column">
       <!-- uploaded signal shape -->
       <div id='uploadedGraph' class='chart'”></div>
+      <div>
+        <!-- Example row of columns -->
+        <div class="row">
+            <div id="input-signal">
+
+            </div>
+        </div>
+    </div>
     </div>
    
   </div>
@@ -79,11 +107,6 @@
 
     <!-- script to display uploaded signal -->
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <script type='text/javascript'>
-    var graphs = {{graphJSON | safe}};
-    Plotly.plot('uploadedGraph',graphs,{});
-    </script>
-
 
       <canvas id="chart3" height="300" width="400"></canvas>
     </div>
@@ -96,6 +119,80 @@
 
     </div>
     <script src="/static/js/graph.js"></script>
+    <script>
+      var chartTemperatue;
+
+      function getFileName(){
+          var fileInput = document.getElementById('upload');   
+          var filename = fileInput.files[0].name;
+
+          // --------------Chart 1 ----------------------------
+          chartTemperatue = new Highcharts.Chart({
+              chart:
+                  {
+                  renderTo: 'input-signal'
+                  },
+              title:
+                  {
+                  text: 'Input signal'
+                  },
+              xAxis: {
+                  tickPixelInterval: 150
+                      },
+              yAxis: {
+                  minPadding: 0.2,
+                  maxPadding: 0.2,
+                  title: {
+                      text: 'Value',
+                      margin: 80
+                          }
+                       },
+              series: [{
+                  color : '#c23d23',
+                  lineColor: '#303030',
+                  name: 'Time',
+                  data: []
+              }]
+          });
+          // --------------Chart 1 Ends - -----------------
+          requestData(filename);
+        }
+
+
+      function requestData(filename)
+      {
+        // Ajax call to get the Data from Flask
+        console.log(filename);
+        $.ajax(
+          {
+              method: 'POST',
+              url: 'http://192.168.1.8:5000/data',
+              dataType: 'json',
+              async: true,
+              data:
+              {
+                  filename:filename,
+              },
+              success: function (result, status, xhr) 
+              {
+                  var seriesTemperature = chartTemperatue.series[0],
+                      shiftTemperature = seriesTemperature.data.length > 20;
+
+                  // Add the Point
+                  // Time Temperature\
+                  var data1 = [];
+                  data1.push(result[0]);
+                  data1.push(result[1]);
+
+                  chartTemperatue.series[0].addPoint(data1, true, shiftTemperature);
+                  console.log(result);
+                  // call it again after one second
+                  setTimeout(requestData(filename), 2000);  
+              
+              }
+          });
+      }
+  </script>
    
 
 </body>
