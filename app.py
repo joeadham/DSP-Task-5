@@ -29,7 +29,6 @@ def main():
 @app.route('/data', methods=["GET", "POST"])
 def data():
     if request.method == 'POST':
-        
         filename = request.values['filename']
         #reads the csv file
         df = pd.read_csv(filename)
@@ -37,6 +36,8 @@ def data():
         if session['fileName'] != filename:
             session['fileName'] = filename
             session['i'] = 0
+            # return json.dumps({0:0})
+            # time.sleep(2)
         
         #plots the signal
         index = session['i']

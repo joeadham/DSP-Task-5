@@ -121,10 +121,12 @@
     <script src="/static/js/graph.js"></script>
     <script>
       var chartTemperatue;
-
+      var glopalFileName;
       function getFileName(){
           var fileInput = document.getElementById('upload');   
           var filename = fileInput.files[0].name;
+          glopalFileName = filename;
+
 
           // --------------Chart 1 ----------------------------
           chartTemperatue = new Highcharts.Chart({
@@ -161,6 +163,9 @@
 
       function requestData(filename)
       {
+        if (glopalFileName != filename){
+          return;
+        }
         // Ajax call to get the Data from Flask
         console.log(filename);
         $.ajax(
