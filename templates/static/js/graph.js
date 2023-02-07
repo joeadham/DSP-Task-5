@@ -323,18 +323,18 @@ function myMove(event) {
   }
 }
 
-function showCheckboxes() {
-  var checkboxes =
-    document.getElementById("checkBoxes");
+// function showCheckboxes() {
+//   var checkboxes =
+//     document.getElementById("checkBoxes");
 
-  if (show) {
-    checkboxes.style.display = "block";
-    show = false;
-  } else {
-    checkboxes.style.display = "none";
-    show = true;
-  }
-}
+//   if (show) {
+//     checkboxes.style.display = "block";
+//     show = false;
+//   } else {
+//     checkboxes.style.display = "none";
+//     show = true;
+//   }
+// }
 
 function addFilter() {
   let filter = document.getElementById("text").value
@@ -526,5 +526,7 @@ WebFontConfig = {
 // }
 
 
-
-
+function toggleCheck(sibling) {
+  var checkBox = sibling.parentNode.getElementsByTagName("input")[0];
+  checkBox.checked = !checkBox.checked;
+}
