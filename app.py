@@ -45,7 +45,7 @@ def data():
         session['i'] += 1
         print('-'*50)
         print(index)
-        time.sleep(1)
+        time.sleep(0.1)
         return json.dumps({0: df.iloc[index%len(df)][0],1:df.iloc[index%len(df)][1]})
     
 

@@ -149,7 +149,18 @@
                       margin: 80
                           }
                        },
-              series: [{
+                       plotOptions: {
+                        series: {
+                            marker: {
+                                enabled: false,
+                                states: {
+                                    hover: {
+                                        enabled: false
+                                    }
+                                }
+                            }
+                        }
+                    },series: [{
                   color : '#c23d23',
                   lineColor: '#303030',
                   name: 'Time',
