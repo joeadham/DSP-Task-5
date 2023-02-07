@@ -116,7 +116,7 @@ function draw() {
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
 
-    ctx.fillStyle = "#black"; // Red color
+    ctx.fillStyle = "#black"; 
 
     ctx.arc(zeros[i].x, zeros[i].y, zeroSize, 0, Math.PI * 2, true);
 
@@ -348,16 +348,16 @@ function freqResponse(lambda) {
   for (var i = 0; i < zeros.length; i++) {
     var xx = zeros[i].x - 230;
     var yy = 210 - zeros[i].y;
-    xx /= 200.0;
-    yy /= 200.0;
+    xx /= 90.0;
+    yy /= 90.0;
     zerosP.push([xx, yy])
 
   }
   for (var i = 0; i < poles.length; i++) {
     var xx = poles[i].x - 230;
     var yy = 210 - poles[i].y;
-    xx /= 200.0;
-    yy /= 200.0;
+    xx /= 90.0;
+    yy /= 90.0;
     polesP.push([xx, yy])
   }
   var flag = false;
