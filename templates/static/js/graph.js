@@ -1,6 +1,6 @@
 
 //window.onload = function() {draw()}
-var unitCircleRadius = 200,
+var unitCircleRadius = 90,
   zeroSize = 4,
   poleSize = 5,
   zeros = [],
@@ -18,13 +18,13 @@ var unitCircleRadius = 200,
   lineChart3 = 0,
   lambda = 0;
 
-for (let i = -0.9; i <= 0.9; i += 0.1) {
-  if (i.toFixed(1) != -0.0) {
-    document.getElementById("checkBoxes").innerHTML += "<input onclick  = \"freqResponse(" + i.toFixed(1) + ")\"  type=\"checkbox\" id=" + i.toFixed(1) + ">" + i.toFixed(1) + "<br>"
-  } else {
-    document.getElementById("checkBoxes").innerHTML += "<input onclick  = \"freqResponse(" + 0 + ")\" type=\"checkbox\" id=" + 0 + ">" + 0 + " <br> "
-  }
-}
+// for (let i = -0.9; i <= 0.9; i += 0.1) {
+//   if (i.toFixed(1) != -0.0) {
+//     document.getElementById("checkBoxes").innerHTML += "<input onclick  = \"freqResponse(" + i.toFixed(1) + ")\"  type=\"checkbox\" id=" + i.toFixed(1) + ">" + i.toFixed(1) + "<br>"
+//   } else {
+//     document.getElementById("checkBoxes").innerHTML += "<input onclick  = \"freqResponse(" + 0 + ")\" type=\"checkbox\" id=" + 0 + ">" + 0 + " <br> "
+//   }
+// }
 
 
 $("#unitCircle").click(function (event) {
@@ -91,7 +91,7 @@ function draw() {
   ctx.fill();
 
   ctx.lineWidth = 4;
-  ctx.strokeStyle = "black";
+  ctx.strokeStyle = "grey";
   ctx.stroke();
 
   ctx.closePath();
@@ -116,7 +116,7 @@ function draw() {
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
 
-    ctx.fillStyle = "#black"; // Red color
+    ctx.fillStyle = "#black"; 
 
     ctx.arc(zeros[i].x, zeros[i].y, zeroSize, 0, Math.PI * 2, true);
 
@@ -323,18 +323,18 @@ function myMove(event) {
   }
 }
 
-function showCheckboxes() {
-  var checkboxes =
-    document.getElementById("checkBoxes");
+// function showCheckboxes() {
+//   var checkboxes =
+//     document.getElementById("checkBoxes");
 
-  if (show) {
-    checkboxes.style.display = "block";
-    show = false;
-  } else {
-    checkboxes.style.display = "none";
-    show = true;
-  }
-}
+//   if (show) {
+//     checkboxes.style.display = "block";
+//     show = false;
+//   } else {
+//     checkboxes.style.display = "none";
+//     show = true;
+//   }
+// }
 
 function addFilter() {
   let filter = document.getElementById("text").value
@@ -348,16 +348,16 @@ function freqResponse(lambda) {
   for (var i = 0; i < zeros.length; i++) {
     var xx = zeros[i].x - 230;
     var yy = 210 - zeros[i].y;
-    xx /= 200.0;
-    yy /= 200.0;
+    xx /= 90.0;
+    yy /= 90.0;
     zerosP.push([xx, yy])
 
   }
   for (var i = 0; i < poles.length; i++) {
     var xx = poles[i].x - 230;
     var yy = 210 - poles[i].y;
-    xx /= 200.0;
-    yy /= 200.0;
+    xx /= 90.0;
+    yy /= 90.0;
     polesP.push([xx, yy])
   }
   var flag = false;
@@ -526,5 +526,7 @@ WebFontConfig = {
 // }
 
 
-
-
+function toggleCheck(sibling) {
+  var checkBox = sibling.parentNode.getElementsByTagName("input")[0];
+  checkBox.checked = !checkBox.checked;
+}
