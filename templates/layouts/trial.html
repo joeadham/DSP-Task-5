@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- <link rel="shortcut icon" href="{{ url_for('static', filename='image/breast-cancer.ico.ico') }}" type="image/png"/> -->
+    <link rel="stylesheet" href="../static/css/trial.css"/>
+    <title>Digital Filter Design</title>
+</head>
+<body>
+    <h1 id="title">The Unit Circle Visualization</h1>
+    <div class="big_container">
+        <div class="menu">
+            <div class="content">
+                <ul class="menu_list">
+                    <li class="item" id="delete">
+                        <p>Delete</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="filter">
+            <div class="options_list">
+                <label class="text" >Custom Filter</label>
+                <input class="text-field" type="text" id="text">
+                <input class="button" onclick="addFilter()" type="submit" value="Add">
+            </div>
+            <div class="options_list">
+                <div class="options">
+                    <input type="radio" name="options" id="zero" value="zero" checked>
+                    <label class="text" for="zero">Draw Zero</label>
+                </div>
+                <div class="options">
+                    <input type="radio" name="options" id="pole" value="pole">
+                    <label class="text" for="pole">Draw Pole</label>
+                </div>
+                <div class="options">
+                    <input type="checkbox" id="conj">
+                    <label class="text" for="Conjugate">Draw Conjugate</label>
+                </div>
+            </div>
+            <div class="options_list">
+                <button class="button" onclick="clearCanvas('zeros')">Clear Zeros</button>
+                <button class="button" onclick="clearCanvas('poles');">Clear Poles</button>
+                <button class="button" onclick="clearCanvas('all');">Clear All</button>
+            </div>
+            <div class="unit_circle">
+                <canvas id="unitCircle"></canvas>
+            </div>
+            <div class="options_list">
+                <button class="button" onclick=""> Apply Filter </button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="plotting">
+                <div class="graph">
+                    <label class="text">Upload Signal</label>
+                    <form method=post enctype=multipart/form-data>
+                      <!-- <input type=file name=file>
+                      <input class="button" type=submit value=Upload> -->
+                      <form method=post enctype=multipart/form-data>
+                        <input type=file name=file id="upload" onchange="getFileName()">
+                        <div class="row">
+                          <div id="input-signal">
+              
+                          </div>
+                      </div>
+                    </form>
+                    </form>
+        
+        
+                </div>
+                <div class="graph">
+                   
+                    
+                </div>
+            </div>
+            <div class="plotting">
+                <div class="graph">
+                    <canvas id="phase_plot" height="300" width="400"></canvas>
+                </div>
+                <div class="graph">
+                    <canvas id="magnitude_plot" height="300" width="400"></canvas>                    
+                </div>
+            </div>
+
+        </div>
+        
+      
+
+    </div>
+   
+    
+
+</body>
+<script src="../static/js/trial.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/draggable-points.js"></script>
+</html>

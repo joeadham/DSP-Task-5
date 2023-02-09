@@ -128,10 +128,7 @@ function draw() {
 
 
 function getPosition(event) {
-  var {
-    x,
-    y
-  } = getXY(event)
+  var {x,y} = getXY(event)
   var flagZero = document.getElementById('zero').checked
   if (Math.pow((x - centerX), 2) + Math.pow((y - centerY), 2) <= Math.pow(unitCircleRadius, 2))
     drawCoordinates(x, y, flagZero);
@@ -228,34 +225,25 @@ function myDown(event) {
   event.preventDefault();
   event.stopPropagation();
 
-  var {
-    x,
-    y
-  } = getXY(event)
-  var rightClick = event.button == 2
+  var {x,y} = getXY(event)
+  var rightClick = event.button
 
   drag = false;
   del = false;
 
-  var {
-    flag,
-    i
-  } = iterate(zeros, zeroSize, x, y)
-
-  if (flag) {
-    if (rightClick) {
-      del = true
-      zeros.splice(i, 1)
-    } else {
-      drag = true;
-      zeros[i].isDragging = true;
+  var {flag, i} = iterate(zeros, zeroSize, x, y)
+    if (flag) {
+      if (rightClick) {
+        del = true
+        zeros.splice(i, 1)
+      } else {
+        drag = true;
+        zeros[i].isDragging = true;
+      }
     }
-  }
 
-  var {
-    flag,
-    i
-  } = iterate(poles, poleSize, x, y)
+  
+  var {flag,i} = iterate(poles, poleSize, x, y)
   if (!drag)
     if (flag) {
       if (rightClick) {
@@ -294,10 +282,7 @@ function myMove(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    var {
-      x,
-      y
-    } = getXY(event)
+    var {x,y} = getXY(event)
 
     var dx = x - startX;
     var dy = y - startY;
@@ -351,7 +336,6 @@ function freqResponse(lambda) {
     xx /= 90.0;
     yy /= 90.0;
     zerosP.push([xx, yy])
-
   }
   for (var i = 0; i < poles.length; i++) {
     var xx = poles[i].x - 230;

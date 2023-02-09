@@ -24,7 +24,7 @@ def main():
     session['i'] = 0
     if 'fileName' not in session:
         session['fileName'] = ''
-    return render_template("/layouts/page.html")
+    return render_template("/layouts/trial.html")
 
 @app.route('/data', methods=["GET", "POST"])
 def data():

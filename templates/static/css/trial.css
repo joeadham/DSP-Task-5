@@ -1,0 +1,144 @@
+body{
+    background-color: rgb(238, 238, 238);
+}
+.big_container{
+    display: flex;
+    flex-direction: row;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+#title{
+    font-size: 45px;
+    text-align: center;
+    margin: 20px;
+    font-family: monospace;
+}
+.menu{
+    position: absolute;
+    visibility: hidden;
+    width: 79px;
+    height: 35px;
+    background-color: rgba(33, 33, 33, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 12 35px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    margin: 84px;
+
+}
+.content p , .content ul, .content li {
+    padding: 0px;
+    margin: 5px;
+}
+
+.content .item{
+    color: white;
+    list-style: none;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+.text{
+    width: 60px;
+    font-size: 20px;
+    font-family: math;
+    padding-left: 10px;
+}
+.imp_filter{
+    column-gap: 1px;
+}
+.text-field{
+    height: 28px;
+    border-radius: 15px;
+
+}
+.filter{
+    border-right-style: double;
+    margin-left: 22px;
+    width: 440px;
+    height: 85vh;
+    display: grid;
+    justify-items: center;
+    row-gap: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+   
+}
+.options_list{
+    display: flex;
+    column-gap: 16px;
+    width: 359px;
+    justify-content: center;
+    align-items: center;
+}
+.options{
+    display: flex;
+    column-gap: 8px;
+    width: 110px;
+
+}
+.button {
+    border-radius: 1rem;
+    box-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 50%);
+    background-color: rgb(5, 119, 119);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: rgb(93, 126, 126);
+    color: rgb(255, 255, 255);
+}
+.graph,.unit_circle {
+    text-align: center;
+    background-color: white;
+    border: 4px;
+    border-radius: 1rem;
+    box-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 50%);
+    border-left-color: #2b5876;
+    border-top-color: #2b5876;
+}
+.highcharts-credits{
+    display: none !important;
+}
+.highcharts-axis highcharts-yaxis,.highcharts-axis highcharts-xaxis{
+    width: 60px;
+    font-size: 20px;
+    font-family: math;
+    padding-left: 10px;
+}
+
+
+.highcharts-container ,.highcharts-root{
+    width: 400px !important;
+    height: 400px !important;
+}
+.unit_circle{
+    width: 360px;
+    height: 360px;
+}
+.graph{
+    width: 550px;
+    height: 300px;
+
+}
+.plotting{
+    width: 1162px;
+    height: 311px;
+   display: flex;
+    flex-direction: row;
+    column-gap: 34px;
+    margin-left: 46px;
+    padding-top: 30px;
+    border-top-style: double;
+
+}
