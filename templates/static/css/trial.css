@@ -119,8 +119,8 @@ body{
 
 
 .highcharts-container ,.highcharts-root{
-    width: 400px !important;
-    height: 400px !important;
+    width: 550px !important;
+    height: 250px !important;
 }
 .unit_circle{
     width: 360px;

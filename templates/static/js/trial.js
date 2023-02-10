@@ -360,10 +360,34 @@ function getFileName(){
     inputSignalChart = new Highcharts.Chart({
         chart:
             {
-            renderTo: 'input-signal'
+            renderTo: 'input-signal',
+            height:800,
+            width:1600,
+            style: {
+              fontSize: '50px'
+          }
             },
+            legend: {
+              itemStyle: {
+                 font: '40pt Trebuchet MS, Verdana, sans-serif',
+                 color: '#000'
+              },
+              itemHoverStyle: {
+                 color: '#000'
+              },
+              itemHiddenStyle: {
+                 color: '#444'
+              }
+
+        }
+            ,
         title:
             {
+              style: {
+                color: '#000',
+                fontWeight: 'bold',
+                fontSize:"50px"
+              },
             text: 'Input signal'
             },
         xAxis: {
@@ -373,6 +397,11 @@ function getFileName(){
             minPadding: 0.2,
             maxPadding: 0.2,
             title: {
+              style: {
+                color: '#000',
+                fontWeight: 'bold',
+                fontSize:"50px"
+              },
                 text: 'Value',
                 margin: 80
                     }
@@ -388,7 +417,8 @@ function getFileName(){
                           }
                       }
                   }
-              },series: [{
+              }
+              ,series: [{
             color : '#c23d23',
             lineColor: '#303030',
             name: 'Time',
@@ -407,7 +437,7 @@ function requestData(filename)
   $.ajax(
     {
         method: 'POST',
-        url: 'http://192.168.1.14:5000//data', //change according to your url
+        url: 'http://127.0.0.1:5000/data', //change according to your url
         dataType: 'json',
         async: true,
         data:
