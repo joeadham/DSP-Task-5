@@ -51,30 +51,31 @@
             <div class="unit_circle">
                 <canvas id="unitCircle"></canvas>
             </div>
-            <div class="options_list">
-                <button class="button" onclick=""> Apply Filter </button>
-            </div>
         </div>
         <div class="container">
             <div class="options_list toggle_pages">
-                <button class="button" onclick=""> Correct phase</button>
+                <!-- <button class="button" onclick=""> Correct phase</button> -->
+                <button class="button" onclick=""> <a href ="/allpass">Correct phase</a> </button>
             </div>
             <div class="plotting border">
                 <div class="graph">
-                    <form class="upload" method=post enctype=multipart/form-data>
-                        <label class="text upload">Upload Signal</label>
-                        <!-- <input type=file name=file>
-                        <input class="button" type=submit value=Upload> -->
-                        <form method=post enctype=multipart/form-data>
-                            <input class="button upload_btn" type=file name=file id="upload" onchange="getFileName()">
-                            <div class="row">
-                                <div id="input-signal">
+                    <!-- <div class="upload_signal">
+                        <form class="upload" method=post enctype=multipart/form-data>
+                            <label class="text upload">Upload Signal</label> -->
+                            <!-- <input type=file name=file>
+                            <input class="button" type=submit value=Upload> -->
+                            <!-- <form method=post enctype=multipart/form-data>
+                                <input class="button upload_btn" type=file name=file id="upload" onchange="getFileName()">
+                                <div class="row">
+                                    <div id="input-signal">
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </form>
-                    </form>
-        
-        
+                    </div> -->
+                    <div class="generate_signal">
+                        
+                    </div>
                 </div>
                 <div class="graph">
                    
@@ -105,4 +106,5 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/draggable-points.js"></script>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 </html>
