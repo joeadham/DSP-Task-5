@@ -340,6 +340,15 @@ function getFileName(){
                 text: 'Value',
                 margin: 30
                     }
+                    [{
+                      height: '100%',
+                      resize: {
+                        enabled: true
+                      }
+                    }, {
+                      height: '50%',
+                      top: '50%'
+                    }]
                   },
                   plotOptions: {
                   series: {
@@ -384,7 +393,7 @@ function requestData(filename)
   $.ajax(
     {
         method: 'POST',
-        url: 'http://127.0.0.1:5000/data', //change according to your url
+        url: 'http://192.168.1.14:5000/data', //change according to your url
         dataType: 'json',
         async: true,
         data:
