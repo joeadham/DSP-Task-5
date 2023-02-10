@@ -94,7 +94,7 @@ body{
     transition-duration: 0.4s;
     cursor: pointer;
 }
-.button:hover {
+.button:hover, input[type="file"]::file-selector-button:hover {
     background-color: rgb(93, 126, 126);
     color: rgb(255, 255, 255);
 }
@@ -110,9 +110,6 @@ body{
 .highcharts-credits{
     display: none !important;
 }
-
-
-
 .highcharts-container ,.highcharts-root{
     width: 550px !important;
     height: 250px !important;
@@ -124,7 +121,20 @@ body{
 .graph{
     width: 550px;
     height: 300px;
-
+}
+.upload{
+    padding-left: 14px;
+}
+.upload_btn{
+    width: 100px;
+    text-align-last: left;
+}
+input[type="file"]::file-selector-button{
+    background-color: rgb(5, 119, 119);
+    border-style: none;
+    color: #fff;
+    font-size: 16px;
+    width: 108px;
 }
 .plotting{
     width: 1162px;

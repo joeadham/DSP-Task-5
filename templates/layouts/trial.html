@@ -58,18 +58,17 @@
             </div>
             <div class="plotting border">
                 <div class="graph">
-                    <label class="text">Upload Signal</label>
-                    <form method=post enctype=multipart/form-data>
-                      <!-- <input type=file name=file>
-                      <input class="button" type=submit value=Upload> -->
-                      <form method=post enctype=multipart/form-data>
-                        <input type=file name=file id="upload" onchange="getFileName()">
-                        <div class="row">
-                          <div id="input-signal">
-              
-                          </div>
-                      </div>
-                    </form>
+                    <form class="upload" method=post enctype=multipart/form-data>
+                        <label class="text upload">Upload Signal</label>
+                        <!-- <input type=file name=file>
+                        <input class="button" type=submit value=Upload> -->
+                        <form method=post enctype=multipart/form-data>
+                            <input class="button upload_btn" type=file name=file id="upload" onchange="getFileName()">
+                            <div class="row">
+                                <div id="input-signal">
+                                </div>
+                            </div>
+                        </form>
                     </form>
         
         
