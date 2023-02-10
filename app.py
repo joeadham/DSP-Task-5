@@ -26,6 +26,14 @@ def main():
         session['fileName'] = ''
     return render_template("/layouts/trial.html")
 
+@app.route("/plotMagAndPhase", methods=["POST", "GET"])
+def plotMagAndPhase():
+    zeros = request.values.getlist('zeros')
+    poles = request.values.getlist('poles')
+    print(zeros)
+    print(poles)
+    return "h"
+
 @app.route('/data', methods=["GET", "POST"])
 def data():
     if request.method == 'POST':
@@ -49,7 +57,7 @@ def data():
         print(len(df))
 
         time.sleep(0.1)
-        return json.dumps({0: df.iloc[index][0],1:df.iloc[index][1]})
+        return json.dumps({0: index,1:df.iloc[index][1]})
     
 
  

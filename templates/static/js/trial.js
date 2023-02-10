@@ -235,6 +235,8 @@ delete_btn.onclick = () => {
 function get_complex(shapes) {
   let x = 0;
   let y = 0;
+  zeros = [];
+  poles = [];
   for (let shape of shapes) {
       x = (shape.x - centerX) / unitcircle_radius
       y = - (shape.y - centerY) / unitcircle_radius;
@@ -251,10 +253,14 @@ function get_complex(shapes) {
 
 
 function get_graphs(){
+  console.log(zeros)
   $.ajax({
     url: 'http://127.0.0.1:5000/plotMagAndPhase',
     type: 'POST',
-    data: JSON.stringify([poles, zeros]),
+    data: {
+      zeros:zeros,
+      poles:poles
+    },
     dataType: 'json',
     async: true,
     success: function (data) {
@@ -262,7 +268,7 @@ function get_graphs(){
         mag_gain = data["mag"];
         phase_gain = data["phase"];
 
-        
+
     }
   })
 }
@@ -276,115 +282,11 @@ function getFileName(){
     var fileInput = document.getElementById('upload');   
     var filename = fileInput.files[0].name;
     glopalFileName = filename;
-
-
-    // --------------Chart 1 ----------------------------
-    inputSignalChart = new Highcharts.Chart({
-        chart:
-            {
-            renderTo: 'input-signal',
-            height:800,
-            width:1600,
-            style: {
-              fontSize: '50px'
-          }
-            },
-            legend: {
-              itemStyle: {
-                 font: '35pt Trebuchet MS, Verdana, sans-serif',
-                 color: '#000',
-              },
-              itemHoverStyle: {
-                 color: '#000'
-              },
-              itemHiddenStyle: {
-                 color: '#444'
-              }
-
-        }
-            ,
-        title:
-            {
-              style: {
-                color: '#000',
-                fontWeight: 'bold',
-                fontSize:"50px"
-              },
-            text: 'Input signal'
-            },
-        xAxis: {
-            tickPixelInterval: 150,
-            labels:{
-              style: {
-                color: '#000',
-                fontSize:"25px",
-                minPadding:'50px'
-              }
-          }
-                },
-        yAxis: {
-            minPadding: 0.2,
-            maxPadding: 0.2,
-            labels:{
-              style: {
-                color: '#000',
-                fontSize:"25px"
-              }
-            },
-            title: {
-              style: {
-                color: '#000',
-                fontWeight: 'bold',
-                fontSize:"40px"
-              },
-                text: 'Value',
-                margin: 30
-                    }
-                    [{
-                      height: '100%',
-                      resize: {
-                        enabled: true
-                      }
-                    }, {
-                      height: '50%',
-                      top: '50%'
-                    }]
-                  },
-                  plotOptions: {
-                  series: {
-                      marker: {
-                          enabled: false,
-                          states: {
-                              hover: {
-                                  enabled: false
-                              }
-                          }
-                      }
-                  }
-              }
-              ,series: [{
-            color : '#c23d23',
-            lineColor: '#303030',
-            name: 'Time',
-            data: []
-        }],
-        responsive: {  
-          rules: [{  
-            condition: {  
-              maxWidth: 500  
-            },  
-            chartOptions: {  
-              legend: {  
-                enabled: false  
-              }  
-            }  
-          }]  
-        }
-    });
-    // --------------Chart 1 Ends - -----------------
+    setUpPlot('input-signal',[],[],'Input signal','Time (s)','Amp',[0,50])
+        
     requestData(filename);
   }
-
+var cnt =0;
 
 function requestData(filename)
 {
@@ -393,33 +295,56 @@ function requestData(filename)
   $.ajax(
     {
         method: 'POST',
-        url: 'http://192.168.1.14:5000/data', //change according to your url
+        url: 'http://127.0.0.1:5000/data', //change according to your url
         dataType: 'json',
         async: true,
         data:
         {
-            filename:filename,
+          filename:filename,
         },
         success: function (result, status, xhr) 
         {
           if (glopalFileName != filename){
             return;
           }
-            var inputChartSeries = inputSignalChart.series[0],
-                inputShift = inputChartSeries.data.length > 20;
-
-            // Add the Point
-            // Time input\
-            var data1 = [];
-            data1.push(result[0]);
-            data1.push(result[1]);
-
-            inputSignalChart.series[0].addPoint(data1, true, inputShift);
-            console.log(result);
-            // call it again after one second
-            
-            setTimeout(requestData(filename), 2000);  
+          Plotly.extendTraces('input-signal',{y:[[result[1]]],x:[[result[0]]]},[0]);
+          cnt++;
+          var stripSize = 50;
+          if(cnt > stripSize){
+            Plotly.relayout('input-signal',{
+              xaxis:{
+                range:[cnt-stripSize,cnt],
+                title:'Time [s]'
+              }
+            })
+          }
+          setTimeout(requestData(filename), 2000);  
         
         }
     });
 }
+
+function setUpPlot(div, time, amp, graph_title,xAxisTitle,yAxisTitle,xRange) {
+  // Prepare The data
+  var plot = {
+      x: time,
+      y: amp,
+      type: "scatter",
+      mode: "lines"
+  };
+
+  // Prepare the graph and plotting
+  var layout = {
+      width: 400,
+      height: 170,
+      margin: { t: 25, b: 35, l: 40, r: 5 },
+
+      xaxis: { title: xAxisTitle, range:xRange },
+      yaxis: { title: yAxisTitle },
+      title: graph_title
+  };
+
+  var data = [plot];
+
+  Plotly.newPlot(div, data, layout);
+};
