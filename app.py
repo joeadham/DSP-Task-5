@@ -41,12 +41,15 @@ def data():
         
         #plots the signal
         index = session['i']
-        # data = [time() * 1000,random()*100]
         session['i'] += 1
+
         print('-'*50)
+        index %= len(df)
         print(index)
+        print(len(df))
+
         time.sleep(0.1)
-        return json.dumps({0: df.iloc[index%len(df)][0],1:df.iloc[index%len(df)][1]})
+        return json.dumps({0: df.iloc[index][0],1:df.iloc[index][1]})
     
 
  

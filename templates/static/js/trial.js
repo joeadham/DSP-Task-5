@@ -369,8 +369,8 @@ function getFileName(){
             },
             legend: {
               itemStyle: {
-                 font: '40pt Trebuchet MS, Verdana, sans-serif',
-                 color: '#000'
+                 font: '35pt Trebuchet MS, Verdana, sans-serif',
+                 color: '#000',
               },
               itemHoverStyle: {
                  color: '#000'
@@ -391,19 +391,32 @@ function getFileName(){
             text: 'Input signal'
             },
         xAxis: {
-            tickPixelInterval: 150
+            tickPixelInterval: 150,
+            labels:{
+              style: {
+                color: '#000',
+                fontSize:"25px",
+                minPadding:'50px'
+              }
+          }
                 },
         yAxis: {
             minPadding: 0.2,
             maxPadding: 0.2,
+            labels:{
+              style: {
+                color: '#000',
+                fontSize:"25px"
+              }
+            },
             title: {
               style: {
                 color: '#000',
                 fontWeight: 'bold',
-                fontSize:"50px"
+                fontSize:"40px"
               },
                 text: 'Value',
-                margin: 80
+                margin: 30
                     }
                   },
                   plotOptions: {
@@ -423,7 +436,19 @@ function getFileName(){
             lineColor: '#303030',
             name: 'Time',
             data: []
-        }]
+        }],
+        responsive: {  
+          rules: [{  
+            condition: {  
+              maxWidth: 500  
+            },  
+            chartOptions: {  
+              legend: {  
+                enabled: false  
+              }  
+            }  
+          }]  
+        }
     });
     // --------------Chart 1 Ends - -----------------
     requestData(filename);
