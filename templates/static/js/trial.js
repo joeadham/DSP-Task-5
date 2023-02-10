@@ -249,100 +249,22 @@ function get_complex(shapes) {
   get_graphs();
 };
 
+
 function get_graphs(){
-  $.post("/postmethod", {
-    zeros_data: JSON.stringify(zerosP),
-    poles_data: JSON.stringify(polesP),
-    lambdaP: JSON.stringify(lambda),
-    flag: JSON.stringify(flag)
+  $.ajax({
+    url: 'http://127.0.0.1:5000/plotMagAndPhase',
+    type: 'POST',
+    data: JSON.stringify([poles, zeros]),
+    dataType: 'json',
+    async: true,
+    success: function (data) {
+        freq = data["freq"];
+        mag_gain = data["mag"];
+        phase_gain = data["phase"];
 
-  },
-    function (err, req, resp) {
-      x = JSON.parse(resp["responseText"])
-      if (lineChart != 0)
-        lineChart.destroy();
-      for (var i = 0; i < x.magnitudeX.length; i++) {
-        x.magnitudeY[i] = x.magnitudeY[i].toFixed(2);
-        x.angles[i] = x.angles[i].toFixed(2);
-      }
-
-      const phase_plot = document.getElementById("phase_plot")
-      lineChart = new Chart(phase_plot, {
-        type: 'line',
-        data: {
-          labels: x.magnitudeX,
-          datasets: [{
-            label: "Magnitude Response",
-            fill: false,
-            backgroundColor: "rgba(75, 192, 192, 0.4)",
-            borderColor: "rgba(75, 192, 192, 1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHitRadius: 10,
-            data: x.magnitudeY,
-          },]
-        }
-      })
-      if (lineChart2 != 0)
-        lineChart2.destroy();
-
-      const magnitude_plot = document.getElementById("magnitude_plot")
-      lineChart2 = new Chart(magnitude_plot, {
-        type: 'line',
-        data: {
-          labels: x.magnitudeX,
-          datasets: [{
-            label: "Phase response",
-            fill: false,
-            backgroundColor: "rgba(255,140,0,0.4)",
-            borderColor: "rgba(255,140,0,0.7)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(255,140,0,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHitRadius: 10,
-            data: x.angles3,
-          },]
-        }
-      })
-
-      if (lineChart3 != 0)
-        lineChart3.destroy();
-
-      const chart3 = document.getElementById("chart3")
-      lineChart3 = new Chart(chart3, {
-        type: 'line',
-        data: {
-          labels: x.magnitudeX,
-          datasets: [{
-            label: "All-Pass Filters phase response",
-            fill: false,
-            backgroundColor: "rgba(34,139,34,0.4)",
-            borderColor: "rgba(34,139,34,0.7)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'bevel',
-            pointBorderColor: "rgba(34,139,34,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHitRadius: 10,
-            data: x.angles2,
-          },]
-        }
-      })
-    });
+        
+    }
+  })
 }
 
 
