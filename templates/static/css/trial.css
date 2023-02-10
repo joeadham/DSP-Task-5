@@ -110,12 +110,7 @@ body{
 .highcharts-credits{
     display: none !important;
 }
-.highcharts-axis highcharts-yaxis,.highcharts-axis highcharts-xaxis{
-    width: 60px;
-    font-size: 20px;
-    font-family: math;
-    padding-left: 10px;
-}
+
 
 
 .highcharts-container ,.highcharts-root{
@@ -138,7 +133,14 @@ body{
     flex-direction: row;
     column-gap: 34px;
     margin-left: 46px;
-    padding-top: 30px;
-    border-top-style: double;
+    padding-top: 10px;
+}
 
+.toggle_pages{
+    align-self: center;
+    padding-left: 11px;
+}
+.border{
+    padding-bottom: 6px;
+    border-bottom-style: double;
 }
