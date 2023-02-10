@@ -53,9 +53,9 @@ def data():
     
 
  
-@app.route("/mouse", methods=["POST", "GET"])
+@app.route("/allpass", methods=["POST", "GET"])
 def mouse():
-    return render_template("/layouts/mouse.html")
+    return render_template("/layouts/allpass.html")
 
 
 @app.route("/postmethod", methods=["POST"])
