@@ -314,7 +314,7 @@ function requestData(filename)
           if (glopalFileName != filename){
             return;
           }
-          Plotly.extendTraces('input-signal',{y:[[result[1]]],x:[[result[0]]]},[0]);
+          Plotly.extendTraces('input-signal',{y:[[result['inputY']]],x:[[result['inputX']]]},[0]);
           cnt++;
           var stripSize = 50;
           if(cnt > stripSize){
@@ -325,7 +325,7 @@ function requestData(filename)
               }
             })
           }
-          Plotly.extendTraces('output-signal',{y:[[result[2]]],x:[[result[0]]]},[0]);
+          Plotly.extendTraces('output-signal',{y:[[result['outputY']]],x:[[result['inputX']]]},[0]);
           if(cnt > stripSize){
             Plotly.relayout('output-signal',{
               xaxis:{
