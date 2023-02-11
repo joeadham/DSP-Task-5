@@ -378,27 +378,124 @@ WebFontConfig = {
   var s = document.getElementsByTagName('script')[0];
   s.parentNode.insertBefore(wf, s);
 })();
+/////////////////////////////////////////////////////
 
-var generate_signal = document.querySelector(".generate_signal");
-var upload_signal = document.querySelector(".upload_signal");
-var button1 = document.querySelector(".signal_button1");
-var button2 = document.querySelector(".signal_button2");
-var signals = document.getElementsByName("signals");
+var value_input = document.getElementsByName("add_value");
+var value_input_real ;
+var value_input_imag ;
+value_input[0].onclick=function(){
+  value_input_real =value_input.value;
+  console.log(value_input_real);
+};
+value_input[0].onclick=function(){
+  value_input_imag =value_input.value;
+  console.log(value_input_imag);
+};
+// Get A value from input data
+let input_text_real = document.querySelector(".value_added_real input");
+let input_text_imag = document.querySelector(".value_added_imag input");
+var add_filter_btn_real = document.getElementById("add_filter_btn_real");
+var add_filter_btn_imag = document.getElementById("add_filter_btn_imag");
+var filters_container = document.getElementById("added_filters");
 
-signals[0].onclick = function (){
-  upload_signal.style.visibility = "hidden";
-  generate_signal.style.visibility = "visible";
-  button1.style.backgroundColor="rgb(237, 248, 248)";
-  button1.style.color="rgb(5, 119, 119)";
-  button2.style.backgroundColor="rgb(5, 119, 119)";
-  button2.style.color="white";
+// List that contains all filters to be sent to the back-end
+let apf_list = []
+
+// To check if filter was already used
+function checkList (a) {
+    for (let i = 0; i < apf_list.length; i++){
+        if (a == apf_list[i]){
+            return true;
+        }
+    }
+    return false;
 };
 
-signals[1].onclick = function (){
-  generate_signal.style.visibility = "hidden";
-  upload_signal.style.visibility = "visible";
-  button2.style.backgroundColor="rgb(237, 248, 248)";
-  button2.style.color="rgb(5, 119, 119)";
-  button1.style.backgroundColor="rgb(5, 119, 119)";
-  button1.style.color="white";
+var input_text = document.getElementById("input_imag").value;
+
+add_filter_btn_imag.onclick = function () {
+  console.log(input_text);
 };
+
+
+// function addFilterInMenu(a) {
+
+//   // Filter div
+//   let filter_div = document.createElement("div");
+//   filter_div.className = "filter_container";
+
+//   // The input data
+//   let filter_text = document.createElement("p");
+//   let text = document.createTextNode("a = " + a);
+//   filter_text.appendChild(text);
+
+//   // Delete Button
+//   let del_btn = document.createElement("span");
+//   let del_text = document.createTextNode("delete");
+//   del_btn.appendChild(del_text);
+//   del_btn.className = "material-symbols-outlined";
+//   del_btn.classList.add("del-filter");
+//   // Important to be able to delete filter from the list
+//   del_btn.id = a;
+
+//   // Finish the div then append it
+//   filter_div.appendChild(filter_text);
+//   filter_div.appendChild(del_btn);
+//   filters_container.appendChild(filter_div);    
+// };
+
+// // Add Filter Button
+// add_filter_btn_real.onclick = function () {
+//   // to remove white spaces
+//   var input_a_real = input_text_real.value.replace(/\s/g, "");
+//   // if input is empty or already used
+//   if (input_a_real == ''){
+//       input_text_real.value = "";
+//       input_text_real.focus();
+//       return input_a_real;
+// }};
+
+// add_filter_btn_imag.onclick = function () {
+//   // to remove white spaces
+//   var input_a_imag = input_text_imag.value.replace(/\s/g, "");
+//   // if input is empty or already used
+//   if (input_a_imag =='' ){
+//       input_text_imag.value = "";
+//       input_text_imag.focus();
+//       return input_a_imag;
+// }
+// };
+// function combine(input_a_imag,input_a_real) {
+//   var input_a = input_a_real + "+ " + input_a_imag +"j" ;
+//   if (input_a ==checkList(input_a) ){
+//     input_a.value = "";
+//     input_a.focus();
+//     return;
+//   }
+//   // Push filter to the list
+//   apf_list.push(input_a);
+//   // Add filter to the menu
+//   addFilterInMenu(input_a);
+
+//   input_text.value = "";
+//   input_text.focus();
+
+// };
+
+
+// // Delete Filter
+// document.addEventListener('click', function(e) {
+//   if (e.target.classList.contains("del-filter")) {
+      
+//       // Remove it from filters list
+//       let index = 0;
+//       for (let i = 0; i < apf_list.length; i++){
+//           if (e.target.id == apf_list[i]){
+//               index = i;
+//           }
+//       }
+//       apf_list.splice(index, 1);
+//       // remove it from history
+//       e.target.parentNode.remove();
+//   }
+// });

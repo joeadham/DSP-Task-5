@@ -52,7 +52,7 @@ body{
 
 }
 .text{
-    width: 60px;
+    width: auto;
     font-size: 20px;
     font-family: math;
     padding-left: 10px;
@@ -70,25 +70,44 @@ body{
     grid-gap: 35px;
     height: 200px;
     padding-top: 40px;
-    width: 320px;
+    width: autp;
 }
 .filter{
-    column-gap: 54px;
-    margin-left: 27px;
+    column-gap: 70px;
     display: flex;
     justify-items: center;
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-left: 20px;
+    flex-direction: row;
+    justify-content: center;
    
 }
-.options_list{
+.options_list,.value_added{
     display: flex;
-    column-gap: 16px;
+    column-gap: 5px;
     align-items: center;
 }
 .options{
     display: flex;
     width: 80px;
 
+}
+.all_pass_container{
+    margin: 28px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+.filters_list{
+    display: flex;
+    column-gap: 119px;
+    padding-left: 43px;
+    align-items: center;
+
+}
+.custom_Filter{
+    display: block;
+    padding: 9px 0px 0px 0px;
 }
 
 .signal_button1,.signal_button2, .button {
@@ -135,8 +154,8 @@ body{
     height: 360px;
 }
 .mouse_pad{
-    width: 415px;
-    height: 190px;
+    width: 460px;
+    height: 182px;
 }
 .signals{
     width: 460px;
@@ -183,8 +202,8 @@ input[type="file"]::file-selector-button{
     border-right-style: double;
 }
 .property {
-    width: 430px;
-    height: 300px;
+    width: 874px;
+    height: 322px;
     border-radius: 20px;
     background: rgb(237, 248, 248);
     -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
@@ -199,10 +218,15 @@ input[type="file"]::file-selector-button{
     background: rgb(237, 248, 248);
     border-radius: 20px;
     position: relative;
+    width: 871px;
     }
     
     .slideshow-item {
     position: absolute;
+    padding-left: 4px;
+    display: flex;
+    width: 856px;
+    height: 215px;
     top: 0;
     bottom: 0;
     left: 0;
@@ -295,28 +319,7 @@ input[type="file"]::file-selector-button{
         }
         }
         
-        /* .item-1, 
-        .item-2,
-        .item-3, 
-        .item-4 ,
-        .item-5 ,
-        .item-6,
-        .item-7,
-        .item-8,
-        .item-9,
-        .item-10,
-        .item-11,
-        .item-12, 
-        .item-13,
-        .item-14,
-        .item-15,
-        .item-16,
-        .item-17,
-        .item-18,
-        .item-19 {
-        -webkit-animation: slideshow 16s ease 0s infinite;
-              animation: slideshow 16s ease 0s infinite;
-        } */
+      
         
         #target-2:target ~ .item-2,
         #target-3:target ~ .item-3,
@@ -343,7 +346,7 @@ input[type="file"]::file-selector-button{
         }
         .image-box {
               width: 430px;
-              height: 300px;
+              height: 322px;
               text-align: center;
               background: "grey";
               padding: 10px;
@@ -359,7 +362,7 @@ input[type="file"]::file-selector-button{
               
             }
 
-.list_filters{
+.list{
     text-align: center;
     border: 4px;
     border-radius: 1rem;
@@ -387,14 +390,31 @@ input[type="file"]::file-selector-button{
 }
 
 
-
-.row{
-
-
+.filter_container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(233, 233, 233);
+    border-radius: 5px;
+    box-shadow: 0px 4px 15px 0px black;
+    height: 45px;
+    margin-bottom: 5px;
+    cursor:default;
 }
-.generate_signal{
-    visibility: hidden;
+
+.filter_container p{
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 30px;
 }
-.upload_signal{
-    visibility: hidden;
+
+.filter_container span{
+    position: absolute;
+    font-size: 28px;
+    right: 20px;
+}
+
+.filter_container span:active{
+    scale: 0.9;
 }
