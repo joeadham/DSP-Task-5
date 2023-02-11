@@ -219,18 +219,15 @@ canvas.addEventListener('contextmenu', function (e) {
       index++;
   }
   if (menu) {
-      contextMenu.style.left = `${startX}px`;
-      contextMenu.style.top = `${startY + 130}px`;
-      contextMenu.style.visibility = "visible";
+      //contextMenu.style.left = `${startX}px`;
+      //contextMenu.style.top = `${startY + 130}px`;
+      //contextMenu.style.visibility = "visible";
+      contextMenu.style.visibility = "hidden";
+      shapes.splice(selected_shape, 1);
+      draw_shapes(shapes);
+      get_complex(shapes);
   }
 });
-
-delete_btn.onclick = () => {
-  contextMenu.style.visibility = "hidden";
-  shapes.splice(selected_shape, 1);
-  draw_shapes(shapes);
-  get_complex(shapes);
-};
 
 function get_complex(shapes) {
   let x = 0;
@@ -288,6 +285,9 @@ function getFileName(){
     var fileInput = document.getElementById('upload');   
     var filename = fileInput.files[0].name;
     glopalFileName = filename;
+    cnt = 0;
+    Plotly.purge('input-signal');
+    Plotly.purge('output-signal');
     setUpPlot('input-signal',[],[],'Input signal','Time (s)','Amp',[0,50])
     setUpPlot('output-signal',[],[],'Output signal','Time (s)','Amp',[0,50])
     
