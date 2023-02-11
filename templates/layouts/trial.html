@@ -23,75 +23,36 @@
                 </ul>
             </div>
         </div>
-        <div class="filter">
-            <div class="options_list">
-                <label class="text" >Custom Filter</label>
-                <input class="text-field" type="text" id="text">
-                <input class="button" onclick="addFilter()" type="submit" value="Add">
-            </div>
-            <div class="options_list">
-                <div class="options">
-                    <input type="radio" name="options" id="zero" value="zero" checked>
-                    <label class="text" for="zero">Draw Zero</label>
+        <div class="container border">
+            <div class="filter">
+                <div class="unit_circle">
+                    <canvas id="unitCircle"></canvas>
                 </div>
-                <div class="options">
-                    <input type="radio" name="options" id="pole" value="pole">
-                    <label class="text" for="pole">Draw Pole</label>
-                </div>
-                <div class="options">
-                    <input type="checkbox" id="conj">
-                    <label class="text" for="Conjugate">Draw Conjugate</label>
-                </div>
-            </div>
-            <div class="options_list">
-                <button class="button" onclick="clearCanvas('zeros')">Clear Zeros</button>
-                <button class="button" onclick="clearCanvas('poles');">Clear Poles</button>
-                <button class="button" onclick="clearCanvas('all');">Clear All</button>
-            </div>
-            <div class="unit_circle">
-                <canvas id="unitCircle"></canvas>
-            </div>
-        </div>
-        <div class="container">
-            <div class="options_list toggle_pages">
-                <button class="button" onclick=""> <a href ="/allpass">Correct phase</a> </button>
-            </div>
-            <div class="plotting border">
-                <div class="graph">
-                    <div class="options_list signals">
-                        <button class="signal_button1" name="signals" >Generate Signal</button>
-                        <button class="signal_button2" name="signals" >Upload Signal</button>
+                <div class="side_menu">
+                    <div class="options_list">
+                        <button class="button" onclick=""> <a href ="/allpass">All Pass Filters</a> </button>
                     </div>
-                    <div class="upload_signal">   
-                        <form class="upload" method=post enctype=multipart/form-data>
-                             <!-- <input type=file name=file>
-                            <input class="button" type=submit value=Upload> -->
-                            <form method=post enctype=multipart/form-data>
-                                <input class="button upload_btn" type=file name=file id="upload" onchange="getFileName()">
-                                <div class="row">
-                                    <div id="input-signal">
-                                    </div>
-                                </div>
-                            </form>
-                        </form> 
+                    <div class="options_list">
+                        <button class="button" onclick=""> Import Filter</button>
+                        <button class="button" onclick=""> Export Filter</button>
                     </div>
-                    <div class="generate_signal">
-                        <form class="upload" method=post enctype=multipart/form-data>
-                            <!-- <input type=file name=file>
-                           <input class="button" type=submit value=Upload> -->
-                           <form method=post enctype=multipart/form-data>
-                               <input class="button upload_btn" type=file name=file id="upload" onchange="getFileName()">
-                               <div class="row">
-                                   <div id="input-signal">
-                                   </div>
-                               </div>
-                           </form>
-                       </form> 
+                    <div class="options_list">
+                        <div class="options">
+                            <input type="radio" name="options" id="zero" value="zero" checked>
+                            <label class="text" for="zero">Draw Zero</label>
+                        </div>
+                        <div class="options">
+                            <input type="radio" name="options" id="pole" value="pole">
+                            <label class="text" for="pole">Draw Pole</label>
+                        </div>
+                        <div class="options">
+                            <input type="checkbox" id="conj">
+                            <label class="text" for="Conjugate">Draw Conjugate</label>
+                        </div>
                     </div>
-                </div>
-                <div class="graph">
-                   
-                    <div id="output-signal" height="300" width="400"></div>  
+                    <div class="options_list">
+                        <button class="button" onclick="clearCanvas('all');">Clear All</button>
+                    </div>
                 </div>
             </div>
             <div class="plotting">
@@ -102,11 +63,24 @@
                     <div id="magPlot" height="300" width="400"></div>                    
                 </div>
             </div>
-
         </div>
-        
-      
+        <div class="container">
+            <div class="options_list ">
+                <button class="signal_button1" name="signals" >Generate Signal</button>
+                <form class="upload" method=post enctype=multipart/form-data>
+                    <form method=post enctype=multipart/form-data>
+                        <input class="button upload_btn"  type=file name=file id="upload" onchange="getFileName()">
+                    </form>
+                </form> 
+            </div>
+            <div class="mouse_pad">
 
+            </div>
+            <div class=" signals" id="input-signal">
+            </div>
+            <div class="signals" id="output-signal">
+            </div>
+        </div>
     </div>
    
     
