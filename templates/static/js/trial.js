@@ -250,14 +250,17 @@ function get_complex(shapes) {
   }
   get_graphs();
 };
+setUpPlot("magPlot",[],[],'Magnitude',"Frequency","Amplitude");
+setUpPlot("phasePlot",[],[],'Phase',"Frequency","Amplitude");
 
 
 function get_graphs(){
-  console.log(zeros)
+  console.log(zeros);
   $.ajax({
+    
     url: 'http://127.0.0.1:5000/plotMagAndPhase',
     type: 'POST',
-    data: {
+    data:{
       zeros:zeros,
       poles:poles
     },
@@ -265,14 +268,17 @@ function get_graphs(){
     async: true,
     success: function (data) {
         freq = data["freq"];
-        mag_gain = data["mag"];
-        phase_gain = data["phase"];
-
+        mag = data["mag"];
+        phase = data["phase"];
+        var magUpdate = { 'x': [freq], 'y': [mag] };
+        var phaseUpdate = { 'x': [freq], 'y': [phase] };
+        console.log(freq)
+        Plotly.update("magPlot", magUpdate);
+        Plotly.update("phasePlot", phaseUpdate);
 
     }
   })
 }
-
 
 
 
@@ -283,7 +289,8 @@ function getFileName(){
     var filename = fileInput.files[0].name;
     glopalFileName = filename;
     setUpPlot('input-signal',[],[],'Input signal','Time (s)','Amp',[0,50])
-        
+    setUpPlot('output-signal',[],[],'Output signal','Time (s)','Amp',[0,50])
+    
     requestData(filename);
   }
 var cnt =0;
@@ -318,8 +325,16 @@ function requestData(filename)
               }
             })
           }
-          setTimeout(requestData(filename), 2000);  
-        
+          Plotly.extendTraces('output-signal',{y:[[result[2]]],x:[[result[0]]]},[0]);
+          if(cnt > stripSize){
+            Plotly.relayout('output-signal',{
+              xaxis:{
+                range:[cnt-stripSize,cnt],
+                title:'Time [s]'
+              }
+            })
+          }
+          setTimeout(requestData(filename), 2000);
         }
     });
 }
