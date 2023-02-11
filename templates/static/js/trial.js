@@ -247,15 +247,42 @@ function get_complex(shapes) {
   }
   get_graphs();
 };
+
+
+function convertToPixels(zeros, poles) {
+  shapes = []
+  let x = 0;
+  let y = 0;
+  for (let zero of zeros) {
+      x = (zero["real"] * unitcircle_radius) + centerX
+      y = (zero["img"] * -1*unitcircle_radius) + centerY
+      shapes.push({ x: x, y: y, type: "zero" });
+  }
+  for (let pole of poles) {
+      x = (pole["real"] * unitcircle_radius) + centerX
+      y = (pole["img"] * -1*unitcircle_radius) + centerY
+      shapes.push({ x: x, y: y, type: "pole" });
+  }
+  console.log(zeros)
+  console.log(poles)
+  console.log(shapes)
+
+  draw_shapes(shapes);
+  get_complex();
+
+};
+
 setUpPlot("magPlot",[],[],'Magnitude',"Frequency","Amplitude");
 setUpPlot("phasePlot",[],[],'Phase',"Frequency","Amplitude");
+
+
 
 
 function get_graphs(){
   console.log(zeros);
   $.ajax({
     
-    url: 'http://192.168.1.14:5000/plotMagAndPhase',
+    url: 'http://127.0.0.1:5000/plotMagAndPhase',
     type: 'POST',
     data:{
       zeros:zeros,
@@ -285,6 +312,7 @@ function getFileName(){
     var fileInput = document.getElementById('upload');   
     var filename = fileInput.files[0].name;
     glopalFileName = filename;
+    generate_phase = false;
     cnt = 0;
     Plotly.purge('input-signal');
     Plotly.purge('output-signal');
@@ -302,7 +330,7 @@ function requestData(filename)
   $.ajax(
     {
         method: 'POST',
-        url: 'http://192.168.1.14:5000/data', //change according to your url
+        url: 'http://127.0.0.1:5000/data', //change according to your url
         dataType: 'json',
         async: true,
         data:
@@ -311,8 +339,11 @@ function requestData(filename)
         },
         success: function (result, status, xhr) 
         {
-          if (glopalFileName != filename){
+          if (glopalFileName != filename || generate_phase){
             return;
+          }
+          if(result['inputY'] == -1){
+            getFileName();
           }
           Plotly.extendTraces('input-signal',{y:[[result['inputY']]],x:[[result['inputX']]]},[0]);
           cnt++;
@@ -499,3 +530,132 @@ add_filter_btn_imag.onclick = function () {
 //       e.target.parentNode.remove();
 //   }
 // });
+
+// Import and export filter
+
+// signals[1].onclick = function (){
+//   generate_signal.style.visibility = "hidden";
+//   upload_signal.style.visibility = "visible";
+//   button2.style.backgroundColor="rgb(237, 248, 248)";
+//   button2.style.color="rgb(5, 119, 119)";
+//   button1.style.backgroundColor="rgb(5, 119, 119)";
+//   button1.style.color="white";
+// };
+
+
+
+
+
+// Buttons and setting up plot
+var generate_btn = document.getElementById("generate_btn");
+var import_signal_btn = document.getElementById("upload");
+
+// Initialize Signal plot
+setUpPlot("input-signal", [], [], "Input");
+setUpPlot("output-signal", [], [], "Output");
+
+
+// Generation Pad Initalization
+let pad = document.getElementById("pad");
+let ctx = pad.getContext("2d");
+pad.height = 190;
+pad.width = 415;
+const pad_rect = pad.getBoundingClientRect();
+
+// Setup the pad axis
+ctx.beginPath();
+ctx.moveTo(200, 0);
+ctx.strokeStyle = "white";
+ctx.lineTo(200, 200);
+ctx.lineWidth = 0.5;
+ctx.stroke();
+
+// Generate Signal
+var generate_phase = true;
+var input_y = 0;
+var t = 0;
+
+// Generating input on mousemove
+pad.onmousemove = (event) => {
+    if (generate_phase) {
+        input_y = parseFloat(event.clientX - pad_rect.left - 200);
+        let filtered_point = updateOutput(input_y);
+
+        Plotly.extendTraces("input-signal", { y: [[input_y]], x: [[t]] }, [0]);
+        Plotly.extendTraces("output-signal", { y: [[filtered_point]], x: [[t]] }, [0]);
+        t += 0.02
+
+        if (t >= 3) {
+            var update_range = { 'xaxis.range': [t - 2.5, t + 0.5] };
+            Plotly.relayout("input-signal", update_range);
+            Plotly.relayout("output-signal", update_range);
+        }
+    }
+};
+
+function updateOutput(y_point) {
+    $.ajax({
+        url: 'http://127.0.0.1:5000/generated',
+        type: 'POST',
+        data: JSON.stringify({ y_point }),
+        cache: false,
+        dataType: 'json',
+        async: false,
+        contentType: 'application/json',
+        processData: false,
+
+        success: function (response) {
+            signal_output = response["y_point"];
+            console.log(signal_output)
+        },
+    });
+    return signal_output;
+};
+
+// Generate Button 
+generate_btn.onclick = () => {
+    generate_phase = true;
+    setUpPlot("input-signal", [], [], "Input");
+    setUpPlot("output-signal", [], [], "Output");
+    t = 0;
+};
+
+var import_filter_btn = document.getElementById("import_filter_btn");
+var export_btn = document.getElementById("export_btn");
+var headers = ['zeros', 'poles'];
+var columns = [zeros, poles];
+function exportFilter(){
+
+    let filter = {
+        zeros: zeros,
+        poles: poles
+    };
+
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(filter));
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", "Digital Filter.json");
+    dlAnchorElem.click();
+    console.log('saved')
+}
+
+let importBtn = document.getElementById('import')
+let importFilter = (event) => {
+    let filter
+    var reader = new FileReader();
+    reader.onload = (event) => {
+        filter = JSON.parse(event.target.result);
+        zeros = filter.zeros
+        poles = filter.poles
+        convertToPixels(zeros, poles)
+    };
+    reader.readAsText(event.target.files[0]);
+}
+
+import_filter_btn.onchange = (event) => {
+    importFilter(event)
+}
+importBtn.onclick = () => {
+    import_filter_btn.click()
+
+}

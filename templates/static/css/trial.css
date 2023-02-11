@@ -418,3 +418,13 @@ input[type="file"]::file-selector-button{
 .filter_container span:active{
     scale: 0.9;
 }
+
+
+
+/* Generation Pad */
+#pad {
+    /* transform: translateY(40px); */
+    background: rgb(33, 34, 37);
+    cursor: crosshair;
+    border-radius: 10px;
+}

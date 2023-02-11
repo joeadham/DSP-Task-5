@@ -19,6 +19,10 @@ phases = []
 input = []
 operatingfilter = Filter([],[],[],[])
 
+combined_poles = []
+combined_zeros = []
+input_signal = []
+
 
 def getFirstFiveAndThrNinth(str):
     firstFive = ''
@@ -78,11 +82,14 @@ def data():
         #reads the csv file
         df = pd.read_csv(filename)
         
+        if session['i']+1 >= len(df):
+            session['i'] = 0
+            return json.dumps({'inputX': -1,'inputY':-1,'outputY':-1})
+
         if session['fileName'] != filename:
             session['fileName'] = filename
             session['i'] = 0
-            # return json.dumps({0:0})
-            # time.sleep(2)
+            
         
         #plots the signal
         index = session['i']
@@ -184,6 +191,24 @@ def post_javascript_data():
     }
     return jsonify(params)
 
+
+@app.route('/generated', methods=['GET', 'POST'])
+def generated():
+    jsonData = request.get_json()
+    input_point = float(jsonData['y_point'])
+    input_signal.append(input_point)
+
+    order = operatingfilter.getFilterOrder()
+#   To save calculations
+    if (order < 1):
+        return json.dumps({"y_point": input_point})
+#   Cut the signal to save memory
+    if len(input_signal) > 2 * order and len(input_signal) > 50:
+        del input_signal[0:order]
+
+    output = operatingfilter.getOutput(input_signal)
+    outputPoint = output[-1]
+    return json.dumps({"y_point": outputPoint})
 
 
 if __name__ == "__main__":

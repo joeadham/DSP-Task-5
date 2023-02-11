@@ -43,7 +43,7 @@ class Filter:
         print('zp'*50)
         print(self.getZeros(),self.getPoles())
         num, den = signal.zpk2tf(self.getZeros(),self.getPoles(), self.getGain())
-        output_signal =  signal.lfilter(num, den, input)
+        output_signal =  signal.lfilter(num, den, input).real
         print(input,output_signal)
         return output_signal
     def getFilterOrder(self):
