@@ -133,7 +133,7 @@ body{
     background-color: rgb(237, 248, 248);
     color: rgb(5, 119, 119);
 }
-.graph,.signals,.mouse_pad,.unit_circle {
+.graph,.signals,.unit_circle {
     text-align: center;
     background-color: white;
     border: 4px;
@@ -154,8 +154,14 @@ body{
     height: 360px;
 }
 .mouse_pad{
-    width: 460px;
+    width: 499px;
     height: 182px;
+    text-align: center;
+    border: 4px;
+    border-radius: 1rem;
+    box-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 50%);
+    border-left-color: #2b5876;
+    border-top-color: #2b5876;
 }
 .signals{
     width: 460px;
