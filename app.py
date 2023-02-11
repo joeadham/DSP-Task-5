@@ -16,6 +16,9 @@ app._static_folder = os.path.abspath("templates/static/")
 angles3 = np.zeros(512)
 phases = []
 
+combined_poles = []
+combined_zeros = []
+input_signal = []
 
 @app.route("/", methods=["POST", "GET"])
 def main():
@@ -135,6 +138,25 @@ def post_javascript_data():
     return jsonify(params)
 
 
+
+@app.route('/generated', methods=['GET', 'POST'])
+def generated():
+    jsonData = request.get_json()
+    input_point = float(jsonData['y_point'])
+    input_signal.append(input_point)
+
+    filter_order = max(len(combined_poles), len(combined_zeros))
+#   To save calculations
+    if (filter_order < 1):
+        return json.dumps({"y_point": input_point})
+#   Cut the signal to save memory
+    if len(input_signal) > 2 * filter_order and len(input_signal) > 50:
+        del input_signal[0:filter_order]
+
+    num, dem = signal.zpk2tf(combined_zeros, combined_poles, 1)
+    output_signal = signal.lfilter(num, dem, input_signal).real
+    output_point = output_signal[-1]
+    return json.dumps({"y_point": output_point})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000,debug = True)

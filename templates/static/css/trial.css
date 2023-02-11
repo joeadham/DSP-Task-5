@@ -338,3 +338,33 @@ input[type="file"]::file-selector-button{
 .list_filters{
 
 }
+
+
+
+/* Generation Pad */
+#pad {
+    transform: translateY(40px);
+    background: rgb(33, 34, 37);
+    cursor: crosshair;
+    border-radius: 10px;
+}
+
+/* Graphs */
+.signal_container {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    transform: translateY(60px);
+    width: 400px;
+    height: 170px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+.signal_plot {
+    background-color: white;
+    width: 400px;
+    height: 170px;
+    margin-right: 10px;
+}

@@ -364,3 +364,94 @@ WebFontConfig = {
   s.parentNode.insertBefore(wf, s);
 })();
 
+
+
+
+
+
+
+function setUpPlot(div, time, amp, graph_title) {
+  // Prepare The data
+  var plot = {
+      x: time,
+      y: amp,
+      type: "scatter",
+      mode: "lines"
+  };
+
+  // Prepare the graph and plotting
+  var layout = {
+      width: 400,
+      height: 170,
+      margin: { t: 25, b: 35, l: 40, r: 5 },
+
+      xaxis: { title: 'Time [s]', range: [0, 3] },
+      yaxis: { title: "Amplitude" },
+      title: graph_title
+  };
+
+  var data = [plot];
+
+  Plotly.newPlot(div, data, layout);
+};
+
+// Initialize Signal plot
+setUpPlot("input_signal", [], [], "Input");
+// setUpPlot("output_signal", [], [], "Output");
+
+
+// Generation Pad Initalization
+let pad = document.getElementById("pad");
+let ctx = pad.getContext("2d");
+pad.height = 150;
+pad.width = 400;
+const pad_rect = pad.getBoundingClientRect();
+
+// Setup the pad axis
+ctx.beginPath();
+ctx.moveTo(200, 0);
+ctx.strokeStyle = "white";
+ctx.lineTo(200, 200);
+ctx.lineWidth = 0.5;
+ctx.stroke();
+
+// Generate Signal
+var generate_phase = true;
+var input_y = 0;
+var t = 0;
+
+
+pad.onmousemove = (event) => {
+  if (generate_phase) {
+      input_y = parseInt(event.clientX - pad_rect.left - 200);
+      // let filtered_point = updateOutput(input_y);
+
+      Plotly.extendTraces("input_signal", { y: [[input_y]], x: [[t]] }, [0]);
+      // Plotly.extendTraces("output_signal", { y: [[filtered_point]], x: [[t]] }, [0]);
+      t += 0.02
+
+      if (t >= 3) {
+          var update_range = { 'xaxis.range': [t - 2.5, t + 0.5] };
+          Plotly.relayout("input_signal", update_range);
+          // Plotly.relayout("output_signal", update_range);
+      }
+  }
+};
+
+function updateOutput(y_point) {
+  $.ajax({
+      url: 'http://127.0.0.1:3000/generated',
+      type: 'POST',
+      data: JSON.stringify({ y_point }),
+      cache: false,
+      dataType: 'json',
+      async: false,
+      contentType: 'application/json',
+      processData: false,
+
+      success: function (response) {
+          signal_output = response["y_point"];
+      },
+  });
+  return signal_output;
+};
