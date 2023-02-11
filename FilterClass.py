@@ -10,9 +10,13 @@ class Filter:
         if polesImg != [] and not isinstance(polesImg[0],complex):
             for i in range(len(polesImg)):
                 polesImg[i] *= 1j
+        self.zeros = []
+        for i in range(len(zerosReal)):
+            self.zeros.append(zerosReal[i]+zerosImg[i])
+        self.poles = []
+        for i in range(len(polesReal)):
+            self.poles.append(polesReal[i]+polesImg[i])
         
-        self.zeros = zerosReal + zerosImg
-        self.poles = polesReal + polesImg
         self.gain = gain
 
     def getZeros(self):
@@ -25,6 +29,7 @@ class Filter:
         return self.gain
     
     def getFreqAndComplexGain(self):
+        print(self.getZeros(),self.getPoles())
         freq,complexGain = signal.freqz_zpk(self.getZeros(),self.getPoles(),self.getGain())
         return freq,complexGain
      
@@ -35,8 +40,11 @@ class Filter:
         return magInLog,phase
     
     def getOutput(self,input):
+        print('zp'*50)
+        print(self.getZeros(),self.getPoles())
         num, den = signal.zpk2tf(self.getZeros(),self.getPoles(), self.getGain())
         output_signal =  signal.lfilter(num, den, input)
+        print(input,output_signal)
         return output_signal
     def getFilterOrder(self):
         order = max(len(self.getZeros()), len(self.getPoles()))

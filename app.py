@@ -29,6 +29,10 @@ def getFirstFiveAndThrNinth(str):
 
 @app.route("/", methods=["POST", "GET"])
 def main():
+    global input
+    input = []
+    global operatingfilter
+    operatingfilter = Filter([],[],[],[])
     if 'i' not in session:
         session['i'] = 0
     session['i'] = 0
@@ -60,6 +64,7 @@ def plotMagAndPhase():
             
             
     print(zerosReal,zerosImg,polesReal,polesImg)
+    global operatingfilter
     operatingfilter = Filter(zerosReal,zerosImg,polesReal,polesImg)
     freq,_ = operatingfilter.getFreqAndComplexGain()
     magInLog,phase = operatingfilter.getMagInLogAndPhase()
@@ -98,7 +103,7 @@ def data():
         outputPoint = output[-1]
         
         time.sleep(0.1)
-        return json.dumps({0: index,1:inputPoint,2:float(outputPoint)})
+        return json.dumps({'inputX': index,'inputY':inputPoint,'outputY':float(outputPoint)})
     
 
  
