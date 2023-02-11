@@ -78,11 +78,14 @@ def data():
         #reads the csv file
         df = pd.read_csv(filename)
         
+        if session['i']+1 >= len(df):
+            session['i'] = 0
+            return json.dumps({'inputX': -1,'inputY':-1,'outputY':-1})
+
         if session['fileName'] != filename:
             session['fileName'] = filename
             session['i'] = 0
-            # return json.dumps({0:0})
-            # time.sleep(2)
+            
         
         #plots the signal
         index = session['i']

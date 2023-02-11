@@ -33,8 +33,12 @@
                         <button class="button" onclick=""> <a href ="/allpass">All Pass Filters</a> </button>
                     </div>
                     <div class="options_list">
-                        <button class="button" onclick=""> Import Filter</button>
-                        <button class="button" onclick=""> Export Filter</button>
+                            <!-- Import Filter -->
+                                <label class='button' for="import_filter_btn" class="ex_imp_btn" id="import_filter_label" >Import filter</label>
+                                <input   id="import_filter_btn" type="file" name="file" hidden />
+                                <a><i  class="fa" id="import"></i></a>
+                            <a id="downloadAnchorElem" style="display:none"></a>
+                            <button class="button" id="export_btn" onclick='exportFilter();' >Export filter</button>
                     </div>
                     <div class="options_list">
                         <div class="options">
