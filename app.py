@@ -7,6 +7,7 @@ import json
 import plotly
 import plotly.express as px
 import time
+from FilterClass import Filter
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
 app.debug = False
@@ -15,7 +16,16 @@ app._static_folder = os.path.abspath("templates/static/")
 
 angles3 = np.zeros(512)
 phases = []
+input = []
+operatingfilter = Filter([],[],[],[])
 
+
+def getFirstFiveAndThrNinth(str):
+    firstFive = ''
+    for i in range(5):
+        firstFive += str[i]
+    
+    return firstFive,str[9]
 
 @app.route("/", methods=["POST", "GET"])
 def main():
@@ -28,11 +38,33 @@ def main():
 
 @app.route("/plotMagAndPhase", methods=["POST", "GET"])
 def plotMagAndPhase():
-    zeros = request.values.getlist('zeros')
-    poles = request.values.getlist('poles')
-    print(zeros)
-    print(poles)
-    return "h"
+    print(request.values)
+    data = {}
+    for key, value in request.values.items():
+        data[ key ] = value
+    zerosReal = []
+    zerosImg = []
+    polesReal = []
+    polesImg = []
+    for key,value in data.items():
+        firstFive,ninth = getFirstFiveAndThrNinth(key)
+        valueF = float(value)
+        if firstFive == 'zeros' and ninth == 'r':
+            zerosReal.append(valueF)
+        elif firstFive == 'zeros' and ninth == 'i':
+            zerosImg.append(valueF)
+        elif firstFive == 'poles' and ninth == 'r':
+            polesReal.append(valueF)
+        else:
+            polesImg.append(valueF)
+            
+            
+    print(zerosReal,zerosImg,polesReal,polesImg)
+    operatingfilter = Filter(zerosReal,zerosImg,polesReal,polesImg)
+    freq,_ = operatingfilter.getFreqAndComplexGain()
+    magInLog,phase = operatingfilter.getMagInLogAndPhase()
+    
+    return json.dumps({'freq':freq.tolist(),'mag':magInLog.tolist(),'phase':phase.tolist()})
 
 @app.route('/data', methods=["GET", "POST"])
 def data():
@@ -50,14 +82,23 @@ def data():
         #plots the signal
         index = session['i']
         session['i'] += 1
-
-        print('-'*50)
         index %= len(df)
-        print(index)
-        print(len(df))
+        
+        inputPoint = df.iloc[index][1]
+        input.append(inputPoint)
+        
+        order = operatingfilter.getFilterOrder()
+        if len(input) > (2*order) and len(input) > 50:
+            del input[0:order]
 
+    
+        
+        
+        output = operatingfilter.getOutput(input)
+        outputPoint = output[-1]
+        
         time.sleep(0.1)
-        return json.dumps({0: index,1:df.iloc[index][1]})
+        return json.dumps({0: index,1:inputPoint,2:float(outputPoint)})
     
 
  
