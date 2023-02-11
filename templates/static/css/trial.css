@@ -10,10 +10,19 @@ body{
     flex-direction: column;
 }
 
+.heading{
+    display: flex;
+    column-gap: 428px;
+}
+#title1{
+    margin: 10px;
+    font-family: monospace;
+
+}
 #title{
     font-size: 45px;
     text-align: center;
-    margin: 20px;
+    margin: 0px;
     font-family: monospace;
 }
 .menu{
@@ -69,8 +78,6 @@ body{
 .options_list{
     display: flex;
     column-gap: 16px;
-    width: 359px;
-    justify-content: center;
     align-items: center;
 }
 .options{
@@ -79,7 +86,8 @@ body{
     width: 110px;
 
 }
-.button {
+
+.signal_button1,.signal_button2, .button {
     border-radius: 1rem;
     box-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 50%);
     background-color: rgb(5, 119, 119);
@@ -98,9 +106,9 @@ body{
     text-decoration: none;
     color: #fff;
 }
-.button:hover, input[type="file"]::file-selector-button:hover {
-    background-color: rgb(93, 126, 126);
-    color: rgb(255, 255, 255);
+.button:hover,.signal_button1:hover,.signal_button2:hover, input[type="file"]::file-selector-button:hover {
+    background-color: rgb(237, 248, 248);
+    color: rgb(5, 119, 119);
 }
 .graph,.unit_circle {
     text-align: center;
@@ -161,7 +169,7 @@ input[type="file"]::file-selector-button{
 }
 .property {
     width: 430px;
-    height: 350px;
+    height: 300px;
     border-radius: 20px;
     background: rgb(237, 248, 248);
     -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
@@ -169,7 +177,8 @@ input[type="file"]::file-selector-button{
               box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
     }
 .list{
-    width: 485px;
+    width: 500px;
+    height: 700px;
 }
 .slideshow {
     background: rgb(237, 248, 248);
@@ -331,10 +340,48 @@ input[type="file"]::file-selector-button{
             .image-box img {
                 max-width: 93%;
                 display: block;
-                height: 103%;
+                height: 85%;
               
             }
 
 .list_filters{
+    text-align: center;
+    border: 4px;
+    border-radius: 1rem;
+    box-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 50%);
+    border-left-color: #2b5876;
+    border-top-color: #2b5876;
+    width: 430px;
+    height: 375px;
+}
+.added_filters{
+    width: 400px;
+    height: 316px;
+    border-radius: 1rem;
+    box-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 50%);
+    border-left-color: #2b5876;
+    border-top-color: #2b5876;
+    overflow-y: scroll;
+    background-color: rgb(237, 248, 248);
+    margin-left: 15px;
 
+}
+
+.added_filters::-webkit-scrollbar{
+    width: 0px;
+}
+
+.signals{
+    padding-top: 5px;
+}
+
+.row{
+
+
+}
+.generate_signal{
+    visibility: hidden;
+}
+.upload_signal{
+    visibility: hidden;
 }

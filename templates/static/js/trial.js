@@ -379,3 +379,26 @@ WebFontConfig = {
   s.parentNode.insertBefore(wf, s);
 })();
 
+var generate_signal = document.querySelector(".generate_signal");
+var upload_signal = document.querySelector(".upload_signal");
+var button1 = document.querySelector(".signal_button1");
+var button2 = document.querySelector(".signal_button2");
+var signals = document.getElementsByName("signals");
+
+signals[0].onclick = function (){
+  upload_signal.style.visibility = "hidden";
+  generate_signal.style.visibility = "visible";
+  button1.style.backgroundColor="rgb(237, 248, 248)";
+  button1.style.color="rgb(5, 119, 119)";
+  button2.style.backgroundColor="rgb(5, 119, 119)";
+  button2.style.color="white";
+};
+
+signals[1].onclick = function (){
+  generate_signal.style.visibility = "hidden";
+  upload_signal.style.visibility = "visible";
+  button2.style.backgroundColor="rgb(237, 248, 248)";
+  button2.style.color="rgb(5, 119, 119)";
+  button1.style.backgroundColor="rgb(5, 119, 119)";
+  button1.style.color="white";
+};

@@ -9,196 +9,195 @@
     <title>Digital Filter Design</title>
 </head>
 <body>
+  <div class="heading">
+    <button class="button " onclick=""> <a href ="/main">home</a> </button>
     <h1 id="title">The Unit Circle Visualization</h1>
-    <div class="filter list">
-        <div class="property">
-            <section class="slideshow" style="height: 250px;">
-               <span id="target-1"></span>
-               <span id="target-2"></span>
-               <span id="target-3"></span>
-               <span id="target-4"></span>
-               <span id="target-5"></span>
-               <span id="target-6"></span>
-               <span id="target-7"></span>
-               <span id="target-8"></span>
-               <span id="target-9"></span>
-               <span id="target-10"></span>
-               <span id="target-11"></span>
-               <span id="target-12"></span>
-               <span id="target-13"></span>
-               <span id="target-14"></span>
-               <span id="target-15"></span>
-               <span id="target-16"></span>
-               <span id="target-17"></span>
-               <span id="target-18"></span>
-               <span id="target-19"></span>
-               <!-- <a href="#" class="play">play</a> -->
-      
-      
-               <div class="slideshow-item item-1">
-                <div class="image-box">
-                  <img src="..\static\img\-0.9.png" />
-                  <input  type="checkbox" value="-0.9">-0.9
-                </div>
-                  <a href="#target-19" class="arrow arrow-prev"></a>
-                  <a href="#target-2" class="arrow arrow-next"></a>
-               </div>
-      
-      
-               <div class="slideshow-item item-2">
-                <div class="image-box">
-                  <img src="..\static\img\-0.8.png" alt="-0.8" />
-                  <input  type="checkbox" value="-0.8">-0.8
-                </div>
-                  <a href="#target-1" class="arrow arrow-prev"></a>
-                  <a href="#target-3" class="arrow arrow-next"></a>
-               </div>
-      
-      
-               <div class="slideshow-item item-3">
-                  <div class="image-box">
-                    <img src="..\static\img\-0.7.png" alt="" />
-                    <input  type="checkbox"  value="-0.7">-0.7
-                 </div>
-                  <a href="#target-2" class="arrow arrow-prev"></a>
-                  <a href="#target-4" class="arrow arrow-next"></a>
-               </div>
-      
-               <div class="slideshow-item item-4">
-                <div class="image-box">
-                  <img src="..\static\img\-0.6.png" alt="" />
-                  <input  type="checkbox" value="-0.6">-0.6
-               </div>
-                  <a href="#target-3" class="arrow arrow-prev"></a>
-                  <a href="#target-5" class="arrow arrow-next"></a>
-               </div>
-               <div class="slideshow-item item-5">
-                <div class="image-box">
-                  <img src="..\static\img\-0.5.png" alt="" />
-                  <input  type="checkbox" value="-0.5">-0.5
-               </div>
-                <a href="#target-4" class="arrow arrow-prev"></a>
-                <a href="#target-6" class="arrow arrow-next"></a>
-               </div>
-              <div class="slideshow-item item-6">
-                <div class="image-box">
-                  <img src="..\static\img\-0.4.png" alt="" />
-                  <input  type="checkbox" value="-0.4">-0.4
-               </div>
-                <a href="#target-5" class="arrow arrow-prev"></a>
-                <a href="#target-7" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-7">
-                <div class="image-box">
-                  <img src="..\static\img\-0.3.png" alt="" />
-                  <input  type="checkbox" value="-0.3">-0.3
-               </div>
-                <a href="#target-6" class="arrow arrow-prev"></a>
-                <a href="#target-8" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-8">
-                <div class="image-box">
-                  <img src="..\static\img\-0.2.png" alt="" />
-                  <input  type="checkbox" value="-0.2">-0.2
-               </div>
-                <a href="#target-7" class="arrow arrow-prev"></a>
-                <a href="#target-9" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-9">
-                <div class="image-box">
-                  <img src="..\static\img\-0.1.png" alt="" />
-                  <input  type="checkbox" value="-0.1">-0.1
-               </div>
-                <a href="#target-8" class="arrow arrow-prev"></a>
-                <a href="#target-10" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-10">
-                <div class="image-box">
-                  <img src="..\static\img\0.png" alt="" />
-                  <input  type="checkbox" value="0">0
-               </div>
-                <a href="#target-9" class="arrow arrow-prev"></a>
-                <a href="#target-11" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-11">
-                <div class="image-box">
-                  <img src="..\static\img\0.1.png" alt="" />
-                  <input  type="checkbox" value="0.1">0.1
-               </div>
-                <a href="#target-10" class="arrow arrow-prev"></a>
-                <a href="#target-12" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-12">
-                <div class="image-box">
-                  <img src="..\static\img\0.2.png" alt="" />
-                  <input  type="checkbox" value="0.2">0.2
-               </div>
-                <a href="#target-11" class="arrow arrow-prev"></a>
-                <a href="#target-13" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-13">
-                <div class="image-box">
-                  <img src="..\static\img\0.3.png" alt="" />
-                  <input  type="checkbox" value="0.3">0.3
-               </div>
-                <a href="#target-12" class="arrow arrow-prev"></a>
-                <a href="#target-14" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-14">
-                <div class="image-box">
-                  <img src="..\static\img\0.4.png" alt="" />
-                  <input  type="checkbox"  value="0.4">0.4
-               </div>
-                <a href="#target-13" class="arrow arrow-prev"></a>
-                <a href="#target-15" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-15">
-                <div class="image-box">
-                  <img src="..\static\img\0.5.png" alt="" />
-                  <input  type="checkbox"  value="0.5">0.5
-               </div>
-                <a href="#target-14" class="arrow arrow-prev"></a>
-                <a href="#target-16" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-16">
-                <div class="image-box">
-                  <img src="..\static\img\0.6.png" alt="" />
-                  <input  type="checkbox" value="0.6">0.6
-               </div>
-                <a href="#target-15" class="arrow arrow-prev"></a>
-                <a href="#target-17" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-17">
-                <div class="image-box">
-                  <img src="..\static\img\0.7.png" alt="" />
-                  <input  type="checkbox" value="0.7">0.7
-               </div>
-                <a href="#target-16" class="arrow arrow-prev"></a>
-                <a href="#target-18" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-18">
-                <div class="image-box">
-                  <img src="..\static\img\0.8.png" alt="" />
-                  <input  type="checkbox" value="0.8">0.8
-               </div>
-                <a href="#target-17" class="arrow arrow-prev"></a>
-                <a href="#target-19" class="arrow arrow-next"></a>
-              </div>
-              <div class="slideshow-item item-19">
-                <div class="image-box">
-                  <img src="..\static\img\0.9.png" alt="" />
-                  <input  type="checkbox" value="0.9">0.9
-               </div>
-                <a href="#target-18" class="arrow arrow-prev"></a>
-                <a href="#target-1" class="arrow arrow-next"></a>
-              </div>
-              
-            </section>
+  </div>
+  <div class="filter list">
+    <div class="property">
+      <section class="slideshow" style="height: 250px;">
+        <span id="target-1"></span>
+        <span id="target-2"></span>
+        <span id="target-3"></span>
+        <span id="target-4"></span>
+        <span id="target-5"></span>
+        <span id="target-6"></span>
+        <span id="target-7"></span>
+        <span id="target-8"></span>
+        <span id="target-9"></span>
+        <span id="target-10"></span>
+        <span id="target-11"></span>
+        <span id="target-12"></span>
+        <span id="target-13"></span>
+        <span id="target-14"></span>
+        <span id="target-15"></span>
+        <span id="target-16"></span>
+        <span id="target-17"></span>
+        <span id="target-18"></span>
+        <span id="target-19"></span>
+        <div class="slideshow-item item-1">
+          <div class="image-box">
+            <img src="..\static\img\-0.9.png" />
+            <input  type="checkbox" value="-0.9">-0.9
           </div>
-          <div class="list_filters">
-
+          <a href="#target-19" class="arrow arrow-prev"></a>
+          <a href="#target-2" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-2">
+          <div class="image-box">
+            <img src="..\static\img\-0.8.png" alt="-0.8" />
+            <input  type="checkbox" value="-0.8">-0.8
           </div>
+          <a href="#target-1" class="arrow arrow-prev"></a>
+          <a href="#target-3" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-3">
+          <div class="image-box">
+            <img src="..\static\img\-0.7.png" alt="" />
+            <input  type="checkbox"  value="-0.7">-0.7
+          </div>
+          <a href="#target-2" class="arrow arrow-prev"></a>
+          <a href="#target-4" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-4">
+          <div class="image-box">
+            <img src="..\static\img\-0.6.png" alt="" />
+            <input  type="checkbox" value="-0.6">-0.6
+          </div>
+          <a href="#target-3" class="arrow arrow-prev"></a>
+          <a href="#target-5" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-5">
+          <div class="image-box">
+            <img src="..\static\img\-0.5.png" alt="" />
+            <input  type="checkbox" value="-0.5">-0.5
+          </div>
+          <a href="#target-4" class="arrow arrow-prev"></a>
+          <a href="#target-6" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-6">
+          <div class="image-box">
+            <img src="..\static\img\-0.4.png" alt="" />
+            <input  type="checkbox" value="-0.4">-0.4
+          </div>
+          <a href="#target-5" class="arrow arrow-prev"></a>
+          <a href="#target-7" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-7">
+          <div class="image-box">
+            <img src="..\static\img\-0.3.png" alt="" />
+            <input  type="checkbox" value="-0.3">-0.3
+          </div>
+          <a href="#target-6" class="arrow arrow-prev"></a>
+          <a href="#target-8" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-8">
+          <div class="image-box">
+            <img src="..\static\img\-0.2.png" alt="" />
+            <input  type="checkbox" value="-0.2">-0.2
+          </div>
+          <a href="#target-7" class="arrow arrow-prev"></a>
+          <a href="#target-9" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-9">
+          <div class="image-box">
+            <img src="..\static\img\-0.1.png" alt="" />
+            <input  type="checkbox" value="-0.1">-0.1
+          </div>
+          <a href="#target-8" class="arrow arrow-prev"></a>
+          <a href="#target-10" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-10">
+          <div class="image-box">
+            <img src="..\static\img\0.png" alt="" />
+            <input  type="checkbox" value="0">0
+          </div>
+          <a href="#target-9" class="arrow arrow-prev"></a>
+          <a href="#target-11" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-11">
+          <div class="image-box">
+            <img src="..\static\img\0.1.png" alt="" />
+            <input  type="checkbox" value="0.1">0.1
+          </div>
+          <a href="#target-10" class="arrow arrow-prev"></a>
+          <a href="#target-12" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-12">
+          <div class="image-box">
+            <img src="..\static\img\0.2.png" alt="" />
+            <input  type="checkbox" value="0.2">0.2
+          </div>
+          <a href="#target-11" class="arrow arrow-prev"></a>
+          <a href="#target-13" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-13">
+          <div class="image-box">
+            <img src="..\static\img\0.3.png" alt="" />
+            <input  type="checkbox" value="0.3">0.3
+          </div>
+          <a href="#target-12" class="arrow arrow-prev"></a>
+          <a href="#target-14" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-14">
+          <div class="image-box">
+            <img src="..\static\img\0.4.png" alt="" />
+            <input  type="checkbox"  value="0.4">0.4
+          </div>
+          <a href="#target-13" class="arrow arrow-prev"></a>
+          <a href="#target-15" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-15">
+          <div class="image-box">
+            <img src="..\static\img\0.5.png" alt="" />
+            <input  type="checkbox"  value="0.5">0.5
+          </div>
+          <a href="#target-14" class="arrow arrow-prev"></a>
+          <a href="#target-16" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-16">
+          <div class="image-box">
+            <img src="..\static\img\0.6.png" alt="" />
+            <input  type="checkbox" value="0.6">0.6
+          </div>
+          <a href="#target-15" class="arrow arrow-prev"></a>
+          <a href="#target-17" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-17">
+          <div class="image-box">
+            <img src="..\static\img\0.7.png" alt="" />
+            <input  type="checkbox" value="0.7">0.7
+          </div>
+          <a href="#target-16" class="arrow arrow-prev"></a>
+          <a href="#target-18" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-18">
+          <div class="image-box">
+            <img src="..\static\img\0.8.png" alt="" />
+            <input  type="checkbox" value="0.8">0.8
+          </div>
+          <a href="#target-17" class="arrow arrow-prev"></a>
+          <a href="#target-19" class="arrow arrow-next"></a>
+        </div>
+        <div class="slideshow-item item-19">
+          <div class="image-box">
+            <img src="..\static\img\0.9.png" alt="" />
+            <input  type="checkbox" value="0.9">0.9
+          </div>
+          <a href="#target-18" class="arrow arrow-prev"></a>
+          <a href="#target-1" class="arrow arrow-next"></a>
+        </div>
+        
+      </section>
     </div>
+    <div class="list_filters">
+      <h2 id="title1">Filters Menu</h2>
+      <div class="added_filters" id="added_filters">
+
+      </div>
+
+    </div>
+  </div>
     
 </body>
 <script src="../static/js/trial.js"></script>

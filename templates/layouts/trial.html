@@ -54,15 +54,17 @@
         </div>
         <div class="container">
             <div class="options_list toggle_pages">
-                <!-- <button class="button" onclick=""> Correct phase</button> -->
                 <button class="button" onclick=""> <a href ="/allpass">Correct phase</a> </button>
             </div>
             <div class="plotting border">
                 <div class="graph">
-                    <div class="upload_signal">
+                    <div class="options_list signals">
+                        <button class="signal_button1" name="signals" >Generate Signal</button>
+                        <button class="signal_button2" name="signals" >Upload Signal</button>
+                    </div>
+                    <div class="upload_signal">   
                         <form class="upload" method=post enctype=multipart/form-data>
-                            <label class="text upload">Upload Signal</label>
-                            <!-- <input type=file name=file>
+                             <!-- <input type=file name=file>
                             <input class="button" type=submit value=Upload> -->
                             <form method=post enctype=multipart/form-data>
                                 <input class="button upload_btn" type=file name=file id="upload" onchange="getFileName()">
@@ -71,10 +73,20 @@
                                     </div>
                                 </div>
                             </form>
-                        </form>
+                        </form> 
                     </div>
                     <div class="generate_signal">
-                        
+                        <form class="upload" method=post enctype=multipart/form-data>
+                            <!-- <input type=file name=file>
+                           <input class="button" type=submit value=Upload> -->
+                           <form method=post enctype=multipart/form-data>
+                               <input class="button upload_btn" type=file name=file id="upload" onchange="getFileName()">
+                               <div class="row">
+                                   <div id="input-signal">
+                                   </div>
+                               </div>
+                           </form>
+                       </form> 
                     </div>
                 </div>
                 <div class="graph">
