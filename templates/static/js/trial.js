@@ -247,8 +247,35 @@ function get_complex(shapes) {
   }
   get_graphs();
 };
+
+
+function convertToPixels(zeros, poles) {
+  shapes = []
+  let x = 0;
+  let y = 0;
+  for (let zero of zeros) {
+      x = (zero["real"] * unitcircle_radius) + centerX
+      y = (zero["img"] * -1*unitcircle_radius) + centerY
+      shapes.push({ x: x, y: y, type: "zero" });
+  }
+  for (let pole of poles) {
+      x = (pole["real"] * unitcircle_radius) + centerX
+      y = (pole["img"] * -1*unitcircle_radius) + centerY
+      shapes.push({ x: x, y: y, type: "pole" });
+  }
+  console.log(zeros)
+  console.log(poles)
+  console.log(shapes)
+
+  draw_shapes(shapes);
+  get_complex();
+
+};
+
 setUpPlot("magPlot",[],[],'Magnitude',"Frequency","Amplitude");
 setUpPlot("phasePlot",[],[],'Phase',"Frequency","Amplitude");
+
+
 
 
 function get_graphs(){
@@ -313,6 +340,9 @@ function requestData(filename)
         {
           if (glopalFileName != filename){
             return;
+          }
+          if(result['inputY'] == -1){
+            getFileName();
           }
           Plotly.extendTraces('input-signal',{y:[[result['inputY']]],x:[[result['inputX']]]},[0]);
           cnt++;
@@ -379,29 +409,17 @@ WebFontConfig = {
   s.parentNode.insertBefore(wf, s);
 })();
 
-var generate_signal = document.querySelector(".generate_signal");
-var upload_signal = document.querySelector(".upload_signal");
-var button1 = document.querySelector(".signal_button1");
-var button2 = document.querySelector(".signal_button2");
-var signals = document.getElementsByName("signals");
 
-signals[0].onclick = function (){
-  upload_signal.style.visibility = "hidden";
-  generate_signal.style.visibility = "visible";
-  button1.style.backgroundColor="rgb(237, 248, 248)";
-  button1.style.color="rgb(5, 119, 119)";
-  button2.style.backgroundColor="rgb(5, 119, 119)";
-  button2.style.color="white";
-};
+// Import and export filter
 
-signals[1].onclick = function (){
-  generate_signal.style.visibility = "hidden";
-  upload_signal.style.visibility = "visible";
-  button2.style.backgroundColor="rgb(237, 248, 248)";
-  button2.style.color="rgb(5, 119, 119)";
-  button1.style.backgroundColor="rgb(5, 119, 119)";
-  button1.style.color="white";
-};
+// signals[1].onclick = function (){
+//   generate_signal.style.visibility = "hidden";
+//   upload_signal.style.visibility = "visible";
+//   button2.style.backgroundColor="rgb(237, 248, 248)";
+//   button2.style.color="rgb(5, 119, 119)";
+//   button1.style.backgroundColor="rgb(5, 119, 119)";
+//   button1.style.color="white";
+// };
 
 
 
@@ -505,3 +523,42 @@ generate_btn.onclick = () => {
     t = 0;
 };
 
+var import_filter_btn = document.getElementById("import_filter_btn");
+var export_btn = document.getElementById("export_btn");
+var headers = ['zeros', 'poles'];
+var columns = [zeros, poles];
+function exportFilter(){
+
+    let filter = {
+        zeros: zeros,
+        poles: poles
+    };
+
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(filter));
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", "Digital Filter.json");
+    dlAnchorElem.click();
+    console.log('saved')
+}
+
+let importBtn = document.getElementById('import')
+let importFilter = (event) => {
+    let filter
+    var reader = new FileReader();
+    reader.onload = (event) => {
+        filter = JSON.parse(event.target.result);
+        zeros = filter.zeros
+        poles = filter.poles
+        convertToPixels(zeros, poles)
+    };
+    reader.readAsText(event.target.files[0]);
+}
+
+import_filter_btn.onchange = (event) => {
+    importFilter(event)
+}
+importBtn.onclick = () => {
+    import_filter_btn.click()
+
+}
