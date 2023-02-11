@@ -282,7 +282,7 @@ function get_graphs(){
   console.log(zeros);
   $.ajax({
     
-    url: 'http://127.0.0.1:5000/plotMagAndPhase',
+    url: 'http://192.168.1.14:5000/plotMagAndPhase',
     type: 'POST',
     data:{
       zeros:zeros,
@@ -330,7 +330,7 @@ function requestData(filename)
   $.ajax(
     {
         method: 'POST',
-        url: 'http://127.0.0.1:5000/data', //change according to your url
+        url: 'http://192.168.1.14:5000/data', //change according to your url
         dataType: 'json',
         async: true,
         data:
@@ -499,7 +499,7 @@ pad.onmousemove = (event) => {
 
 function updateOutput(y_point) {
     $.ajax({
-        url: 'http://127.0.0.1:5000/generated',
+        url: 'http://192.168.1.14:5000/generated',
         type: 'POST',
         data: JSON.stringify({ y_point }),
         cache: false,
