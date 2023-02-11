@@ -312,6 +312,7 @@ function getFileName(){
     var fileInput = document.getElementById('upload');   
     var filename = fileInput.files[0].name;
     glopalFileName = filename;
+    generate_phase = false;
     cnt = 0;
     Plotly.purge('input-signal');
     Plotly.purge('output-signal');
@@ -338,7 +339,7 @@ function requestData(filename)
         },
         success: function (result, status, xhr) 
         {
-          if (glopalFileName != filename){
+          if (glopalFileName != filename || generate_phase){
             return;
           }
           if(result['inputY'] == -1){
@@ -493,9 +494,9 @@ function updateOutput(y_point) {
 
 // Generate Button 
 generate_btn.onclick = () => {
+    generate_phase = true;
     setUpPlot("input-signal", [], [], "Input");
     setUpPlot("output-signal", [], [], "Output");
-    generate_phase = true;
     t = 0;
 };
 
