@@ -66,14 +66,15 @@
         </div>
         <div class="container">
             <div class="options_list ">
-                <button class="signal_button1" name="signals" >Generate Signal</button>
+                <button class="signal_button1" name="signals" id="generate_btn" >Generate Signal</button>
                 <form class="upload" method=post enctype=multipart/form-data>
                     <form method=post enctype=multipart/form-data>
-                        <input class="button upload_btn"  type=file name=file id="upload" onchange="getFileName()">
+                        <input class="button upload_btn"  type=file name="signals" id="upload" onchange="getFileName()">
                     </form>
                 </form> 
             </div>
             <div class="mouse_pad">
+                <canvas id="pad" class="pad"></canvas>
 
             </div>
             <div class=" signals" id="input-signal">

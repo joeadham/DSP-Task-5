@@ -398,3 +398,13 @@ input[type="file"]::file-selector-button{
 .upload_signal{
     visibility: hidden;
 }
+
+
+
+/* Generation Pad */
+#pad {
+    /* transform: translateY(40px); */
+    background: rgb(33, 34, 37);
+    cursor: crosshair;
+    border-radius: 10px;
+}

@@ -255,7 +255,7 @@ function get_graphs(){
   console.log(zeros);
   $.ajax({
     
-    url: 'http://192.168.1.14:5000/plotMagAndPhase',
+    url: 'http://127.0.0.1:5000/plotMagAndPhase',
     type: 'POST',
     data:{
       zeros:zeros,
@@ -302,7 +302,7 @@ function requestData(filename)
   $.ajax(
     {
         method: 'POST',
-        url: 'http://192.168.1.14:5000/data', //change according to your url
+        url: 'http://127.0.0.1:5000/data', //change according to your url
         dataType: 'json',
         async: true,
         data:
@@ -402,3 +402,106 @@ signals[1].onclick = function (){
   button1.style.backgroundColor="rgb(5, 119, 119)";
   button1.style.color="white";
 };
+
+
+
+
+
+// Buttons and setting up plot
+var generate_btn = document.getElementById("generate_btn");
+var import_signal_btn = document.getElementById("upload");
+
+function setUpPlot(div, time, amp, graph_title) {
+    // Prepare The data
+    var plot = {
+        x: time,
+        y: amp,
+        type: "scatter",
+        mode: "lines"
+    };
+
+    // Prepare the graph and plotting
+    var layout = {
+        width: 400,
+        height: 170,
+        margin: { t: 25, b: 35, l: 40, r: 5 },
+
+        xaxis: { title: 'Time [s]', range: [0, 3] },
+        yaxis: { title: "Amplitude" },
+        title: graph_title
+    };
+
+    var data = [plot];
+
+    Plotly.newPlot(div, data, layout);
+};
+
+// Initialize Signal plot
+setUpPlot("input-signal", [], [], "Input");
+setUpPlot("output-signal", [], [], "Output");
+
+
+// Generation Pad Initalization
+let pad = document.getElementById("pad");
+let ctx = pad.getContext("2d");
+pad.height = 190;
+pad.width = 415;
+const pad_rect = pad.getBoundingClientRect();
+
+// Setup the pad axis
+ctx.beginPath();
+ctx.moveTo(200, 0);
+ctx.strokeStyle = "white";
+ctx.lineTo(200, 200);
+ctx.lineWidth = 0.5;
+ctx.stroke();
+
+// Generate Signal
+var generate_phase = true;
+var input_y = 0;
+var t = 0;
+
+// Generating input on mousemove
+pad.onmousemove = (event) => {
+    if (generate_phase) {
+        input_y = parseInt(event.clientX - pad_rect.left - 200);
+        let filtered_point = updateOutput(input_y);
+
+        Plotly.extendTraces("input-signal", { y: [[input_y]], x: [[t]] }, [0]);
+        Plotly.extendTraces("output-signal", { y: [[filtered_point]], x: [[t]] }, [0]);
+        t += 0.02
+
+        if (t >= 3) {
+            var update_range = { 'xaxis.range': [t - 2.5, t + 0.5] };
+            Plotly.relayout("input-signal", update_range);
+            Plotly.relayout("output-signal", update_range);
+        }
+    }
+};
+
+function updateOutput(y_point) {
+    $.ajax({
+        url: 'http://127.0.0.1:5000/generated',
+        type: 'POST',
+        data: JSON.stringify({ y_point }),
+        cache: false,
+        dataType: 'json',
+        async: false,
+        contentType: 'application/json',
+        processData: false,
+
+        success: function (response) {
+            signal_output = response["y_point"];
+        },
+    });
+    return signal_output;
+};
+
+// Generate Button 
+generate_btn.onclick = () => {
+    setUpPlot("input-signal", [], [], "Input");
+    setUpPlot("output-signal", [], [], "Output");
+    generate_phase = true;
+    t = 0;
+};
+
