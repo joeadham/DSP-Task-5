@@ -429,31 +429,6 @@ WebFontConfig = {
 var generate_btn = document.getElementById("generate_btn");
 var import_signal_btn = document.getElementById("upload");
 
-function setUpPlot(div, time, amp, graph_title) {
-    // Prepare The data
-    var plot = {
-        x: time,
-        y: amp,
-        type: "scatter",
-        mode: "lines"
-    };
-
-    // Prepare the graph and plotting
-    var layout = {
-        width: 400,
-        height: 170,
-        margin: { t: 25, b: 35, l: 40, r: 5 },
-
-        xaxis: { title: 'Time [s]', range: [0, 3] },
-        yaxis: { title: "Amplitude" },
-        title: graph_title
-    };
-
-    var data = [plot];
-
-    Plotly.newPlot(div, data, layout);
-};
-
 // Initialize Signal plot
 setUpPlot("input-signal", [], [], "Input");
 setUpPlot("output-signal", [], [], "Output");
@@ -482,7 +457,7 @@ var t = 0;
 // Generating input on mousemove
 pad.onmousemove = (event) => {
     if (generate_phase) {
-        input_y = parseInt(event.clientX - pad_rect.left - 200);
+        input_y = parseFloat(event.clientX - pad_rect.left - 200);
         let filtered_point = updateOutput(input_y);
 
         Plotly.extendTraces("input-signal", { y: [[input_y]], x: [[t]] }, [0]);
@@ -510,6 +485,7 @@ function updateOutput(y_point) {
 
         success: function (response) {
             signal_output = response["y_point"];
+            console.log(signal_output)
         },
     });
     return signal_output;

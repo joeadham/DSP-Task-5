@@ -198,18 +198,17 @@ def generated():
     input_point = float(jsonData['y_point'])
     input_signal.append(input_point)
 
-    filter_order = max(len(combined_poles), len(combined_zeros))
+    order = operatingfilter.getFilterOrder()
 #   To save calculations
-    if (filter_order < 1):
+    if (order < 1):
         return json.dumps({"y_point": input_point})
 #   Cut the signal to save memory
-    if len(input_signal) > 2 * filter_order and len(input_signal) > 50:
-        del input_signal[0:filter_order]
+    if len(input_signal) > 2 * order and len(input_signal) > 50:
+        del input_signal[0:order]
 
-    num, dem = signal.zpk2tf(combined_zeros, combined_poles, 1)
-    output_signal = signal.lfilter(num, dem, input_signal).real
-    output_point = output_signal[-1]
-    return json.dumps({"y_point": output_point})
+    output = operatingfilter.getOutput(input_signal)
+    outputPoint = output[-1]
+    return json.dumps({"y_point": outputPoint})
 
 
 if __name__ == "__main__":
