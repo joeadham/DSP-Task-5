@@ -271,7 +271,7 @@ function get_graphs(){
   console.log(zeros);
   $.ajax({
     
-    url: 'http://192.168.1.14:5000/plotMagAndPhase',
+    url: 'http://172.28.132.119:5000/plotMagAndPhase',
     type: 'POST',
     data:{
       zeros:zeros,
@@ -317,7 +317,7 @@ function requestData(filename)
   $.ajax(
     {
         method: 'POST',
-        url: 'http://192.168.1.14:5000/data', //change according to your url
+        url: 'http://172.28.132.119:5000/data', //change according to your url
         dataType: 'json',
         async: true,
         data:
@@ -446,7 +446,7 @@ pad.onmousemove = (event) => {
 
 function updateOutput(y_point) {
     $.ajax({
-        url: 'http://192.168.1.14:5000/generated',
+        url: 'http://172.28.132.119:5000/generated',
         type: 'POST',
         data: JSON.stringify({ y_point }),
         cache: false,
@@ -510,3 +510,16 @@ importBtn.onclick = () => {
     import_filter_btn.click()
 
 }
+let second_page=document.getElementById('second_page');
+let second_page_btn = document.getElementById('second_page_btn');
+let first_page_btn = document.getElementById('first_page_btn');
+
+second_page_btn.onclick= function () {
+  second_page.style.scale = "1";
+}
+first_page_btn.onclick= function () {
+  second_page.style.scale = "0";
+}
+
+
+

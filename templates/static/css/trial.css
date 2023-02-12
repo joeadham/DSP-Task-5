@@ -13,6 +13,7 @@ body{
     display: flex;
     flex-direction: row;
     column-gap: 51px;
+    padding-left: 44px;
 }
 
 .container{
@@ -148,8 +149,20 @@ input[type="file"]::file-selector-button{
 
 /* All pass Page */
 
+.second_page{
+    position: absolute;
+    top: 17px;
+    bottom: 10px;
+    background-color: rgb(238, 238, 238);
+    left: 64px;
+    right: 99px;
+    scale: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 50%);
+}
+
 .all_pass_container{
-    margin: 28px;
+    margin: 15px;
     display: flex;
     flex-direction: column;
     row-gap: 30px;
@@ -257,6 +270,10 @@ input[type="file"]::file-selector-button{
     position: absolute;
     font-size: 28px;
     right: 20px;
+}
+
+.btn{
+
 }
 
 .filter_container span:active{
