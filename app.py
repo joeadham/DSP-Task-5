@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, make_response, render_template, request,session
+import logging
+from ast import literal_eval
+from flask import Flask, jsonify, make_response, render_template, request,session, redirect, url_for
 import os
 from scipy import signal
 import numpy as np
@@ -111,16 +113,62 @@ def data():
         
         time.sleep(0.1)
         return json.dumps({'inputX': index,'inputY':inputPoint,'outputY':float(outputPoint)})
-    
 
- 
+def getComplex(complexStr):
+    
+    complex_number_strings = complexStr
+    complex_numbers = [literal_eval(cn) for cn in complex_number_strings]
+    # print(complex_numbers)
+    return complex_numbers
+
+@app.route("/send_apf_list", methods=["POST"])
+def send_apf_list():
+    apf_list = request.get_json()
+    # print(apf_list)
+    coefficients = 0
+    for key,value in apf_list.items():
+        coefficients = value
+    # for coefficient in coefficient:
+    coefficients = getComplex(coefficients)
+    
+    allPassZeros = []
+    allPassPoles = []
+    updatedPhaseZeros = operatingfilter.getZeros()
+    updatedPhasePoles = operatingfilter.getPoles()
+    for coefficient in coefficients:
+        allPassZeros.append(1/np.conj(coefficient))
+        allPassPoles.append(coefficient)
+        updatedPhaseZeros.append(1/np.conj(coefficient))
+        updatedPhasePoles.append(coefficient)
+    print(updatedPhaseZeros)
+    
+    allPassFilter = Filter([],[],[],[])
+    allPassFilter.setZeros(allPassZeros)
+    allPassFilter.setPoles(allPassPoles)
+    
+    operatingfilter.setZeros(updatedPhaseZeros)
+    operatingfilter.setPoles(updatedPhasePoles)
+    
+    apfFreq,_ = allPassFilter.getFreqAndComplexGain()
+    _,apfPhase = allPassFilter.getMagInLogAndPhase()
+    
+    updatedPhaseFreq,_ = operatingfilter.getFreqAndComplexGain()
+    _,updatedPhasePhase = operatingfilter.getMagInLogAndPhase()
+    print(updatedPhaseFreq)
+    print('upp'*20)
+    print(updatedPhasePhase)
+    print(coefficients)
+    
+    
+    return jsonify({'apfFreq':apfFreq.tolist(),'apfPhase':apfPhase.tolist(),'updatedPhaseFreq':updatedPhaseFreq.tolist(),'updatedPhasePhase':updatedPhasePhase.tolist()})
+
 @app.route("/allpass", methods=["POST", "GET"])
 def allpass():
     return render_template("/layouts/allpass.html")
 
 @app.route("/main", methods=["POST", "GET"])
 def trial():
-    return render_template("/layouts/trial.html")
+    return redirect(url_for('main'))
 
 
 @app.route("/postmethod", methods=["POST"])

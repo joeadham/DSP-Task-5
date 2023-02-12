@@ -18,7 +18,10 @@ class Filter:
             self.poles.append(polesReal[i]+polesImg[i])
         
         self.gain = gain
-
+    def setZeros(self,zeros):
+        self.zeros = zeros
+    def setPoles(self,poles):
+        self.poles = poles
     def getZeros(self):
         return self.zeros
     

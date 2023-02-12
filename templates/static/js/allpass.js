@@ -1,3 +1,7 @@
+
+let apfReal = []
+let apfImg = []
+
 var add_filter_btn = document.getElementById("add_filter_btn");
 var value_input_real = document.querySelector(".value_added_real input");
 var value_input_imag = document.querySelector(".value_added_imag input");
@@ -16,7 +20,27 @@ add_filter_btn.onclick = function () {
   var input_real = value_input_real.value.replace(/\s/g, "");
   var input_imag = value_input_imag.value.replace(/\s/g, "");
  
+  var realFloat = 0;
+  var imgFloat = 0;
+
+  if(input_real == '' && input_imag == ''){
+      return;
+  }
+  
   var value_input = input_real + "+" +input_imag + "j" 
+  
+  if(input_real == '' && input_imag != ''){
+    value_input = input_imag+"j"
+    imgFloat = parseFloat(input_imag);
+  }
+  else if (input_real != '' && input_imag == ''){
+    value_input = input_real
+    realFloat = parseFloat(input_real);
+  }
+
+  apfReal.push(realFloat);
+  apfImg.push(imgFloat);
+
   console.log(input_real,input_imag,value_input);
   
 
@@ -78,8 +102,6 @@ value_input_imag.value = "";
   }
 
 
-
-
 // Get all checkboxes in the slideshow
 const checkboxes = document.querySelectorAll(".slideshow input[type='checkbox']");
 
@@ -99,25 +121,64 @@ checkboxes.forEach(checkbox => {
   });
 });
 
+setUpPlot('apfPhase',[],[],'All pass','Freq','Amp')
+setUpPlot('updatedPhase',[],[],'Updated phase','Freq','Amp')
+
+
 
 function sendApfListToBackend() {
-    // convert the apf_list to a JSON string
-    const apf_list_json = JSON.stringify(apf_list);
-  
-    // make a POST request to the backend endpoint with the apf_list data
-    fetch("/process_apf_list", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: apf_list_json
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Success:", data);
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      });
-  }
+  fetch('/send_apf_list', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({apf_list: apf_list})
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+    
+    //setUpPlot('apfPhase',[],[],'All pass','Freq','Amp')
+    //setUpPlot('updatedPhase',[],[],'Updated phase','Freq','Amp')
+
+    apfFreq = data["apfFreq"];
+    apfPhase = data["apfPhase"];
+    updatedPhaseFreq = data["updatedPhaseFreq"];
+    updatedPhasePhase = data["updatedPhasePhase"];
+
+    var apfUpdate = { 'x': [apfFreq], 'y': [apfPhase] };
+    var phaseUpdate = { 'x': [updatedPhaseFreq], 'y': [updatedPhasePhase] };
+    Plotly.update("apfPhase", apfUpdate);
+    Plotly.update("updatedPhase", phaseUpdate);
+  });
+}
+
+//function sendApfListToBackend() {
+//    // convert the apf_list to a JSON string
+//    const apf_list_json = JSON.stringify(apf_list);
+//  
+//    
+//
+  //  $.ajax({
+  //  
+  //  url: 'http://127.0.0.1:5000/allPass',
+  //  type: 'POST',
+  //  data:{apfList:apf_list},
+  //  dataType: 'json',
+  //  async: true,
+  //  success: function (data) {
+  //      console.log(data)
+  //      //freq = data["freq"];
+  //      //mag = data["mag"];
+  //      //phase = data["phase"];
+  //      //var magUpdate = { 'x': [freq], 'y': [mag] };
+  //      //var phaseUpdate = { 'x': [freq], 'y': [phase] };
+  //      //console.log(freq)
+  //      //Plotly.update("magPlot", magUpdate);
+  //      //Plotly.update("phasePlot", phaseUpdate);
+  //  }
+  //})
+ // }
   
