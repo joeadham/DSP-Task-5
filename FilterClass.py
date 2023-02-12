@@ -16,7 +16,6 @@ class Filter:
         self.poles = []
         for i in range(len(polesReal)):
             self.poles.append(polesReal[i]+polesImg[i])
-        
         self.gain = gain
     def setZeros(self,zeros):
         self.zeros = zeros

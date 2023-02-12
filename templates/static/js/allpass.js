@@ -158,6 +158,7 @@ function sendApfListToBackend() {
     var phaseUpdate = { 'x': [updatedPhaseFreq], 'y': [updatedPhasePhase] };
     Plotly.update("apfPhase", apfUpdate);
     Plotly.update("updatedPhase", phaseUpdate);
+    Plotly.update("phasePlot", phaseUpdate);
   });
 }
 

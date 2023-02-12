@@ -288,6 +288,7 @@ function get_graphs(){
         console.log(freq)
         Plotly.update("magPlot", magUpdate);
         Plotly.update("phasePlot", phaseUpdate);
+        Plotly.update("updatedPhase", phaseUpdate);
 
     }
   })

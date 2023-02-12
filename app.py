@@ -133,8 +133,8 @@ def send_apf_list():
     
     allPassZeros = []
     allPassPoles = []
-    updatedPhaseZeros = operatingfilter.getZeros()
-    updatedPhasePoles = operatingfilter.getPoles()
+    updatedPhaseZeros = []
+    updatedPhasePoles = []
     for coefficient in coefficients:
         allPassZeros.append(1/np.conj(coefficient))
         allPassPoles.append(coefficient)
@@ -146,19 +146,24 @@ def send_apf_list():
     allPassFilter.setZeros(allPassZeros)
     allPassFilter.setPoles(allPassPoles)
     
-    operatingfilter.setZeros(updatedPhaseZeros)
-    operatingfilter.setPoles(updatedPhasePoles)
+    for zero in operatingfilter.getZeros():
+        updatedPhaseZeros.append(zero)
+    for pole in operatingfilter.getPoles():
+        updatedPhasePoles.append(pole)
+    
+    updatedFilter = Filter([],[],[],[])
+    updatedFilter.setZeros(updatedPhaseZeros)
+    updatedFilter.setPoles(updatedPhasePoles)
     
     apfFreq,_ = allPassFilter.getFreqAndComplexGain()
     _,apfPhase = allPassFilter.getMagInLogAndPhase()
     
-    updatedPhaseFreq,_ = operatingfilter.getFreqAndComplexGain()
-    _,updatedPhasePhase = operatingfilter.getMagInLogAndPhase()
+    updatedPhaseFreq,_ = updatedFilter.getFreqAndComplexGain()
+    _,updatedPhasePhase = updatedFilter.getMagInLogAndPhase()
     print(updatedPhaseFreq)
     print('upp'*20)
     print(updatedPhasePhase)
     print(coefficients)
-    
     
     return jsonify({'apfFreq':apfFreq.tolist(),'apfPhase':apfPhase.tolist(),'updatedPhaseFreq':updatedPhaseFreq.tolist(),'updatedPhasePhase':updatedPhasePhase.tolist()})
 
