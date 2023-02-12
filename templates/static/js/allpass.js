@@ -20,37 +20,104 @@ add_filter_btn.onclick = function () {
   console.log(input_real,input_imag,value_input);
   
 
-  // // Push filter to the list
-  // apf_list.push(value_input);
-  // // Add filter to the menu
-  // addFilterInMenu(input_a);
+  // Push filter to the list
 
-  // input_text.value = "";
-  // input_text.focus();
+  if (!checkList(value_input)) {
+    apf_list.push(value_input);
+  }
+  console.log(apf_list);
+displayFilters();
+
+// clears the text field after clicking add
+value_input_real.value = "";
+value_input_imag.value = "";
+
 };
 
-function addFilterInMenu(a) {
 
-  // Filter div
-  let filter_div = document.createElement("div");
-  filter_div.className = "filter_container";
+  function displayFilters() {
+    const addedFilters = document.getElementById("added_filters");
+    addedFilters.innerHTML = ""; // clear the contents of the div
+  
+    for (let i = 0; i < apf_list.length; i++) {
+      const filter = apf_list[i];
+  
+      // create a new element for each filter
+      const filterElement = document.createElement("div");
+      filterElement.innerHTML = filter;
+  
+      // create a delete button for the filter
+      const deleteButton = document.createElement("button");
+      deleteButton.innerHTML = "Delete";
+      deleteButton.addEventListener("click", function() {
+        apf_list.splice(i, 1);
+        
+        // Uncheck the corresponding checkbox
+        const checkboxes = document.querySelectorAll(".slideshow input[type='checkbox']");
 
-  // The input data
-  let filter_text = document.createElement("p");
-  let text = document.createTextNode("a = " + a);
-  filter_text.appendChild(text);
+        if (checkboxes.length !== 0) {
+        // no checkboxes were found, do something here
+        const checkbox = document.querySelector(`input[type='checkbox'][value='${filter}']`);
+        if (checkbox) {
+            checkbox.checked = false;
+          }
+          
+        
+        }
+        displayFilters();
+      });
+  
+      // append the delete button to the filter element
+      filterElement.appendChild(deleteButton);
+  
+      // append the filter element to the added_filters div
+      addedFilters.appendChild(filterElement);
 
-  // Delete Button
-  let del_btn = document.createElement("span");
-  let del_text = document.createTextNode("delete");
-  del_btn.appendChild(del_text);
-  del_btn.className = "material-symbols-outlined";
-  del_btn.classList.add("del-filter");
-  // Important to be able to delete filter from the list
-  del_btn.id = a;
+    }
+    sendApfListToBackend();
+  }
 
-  // Finish the div then append it
-  filter_div.appendChild(filter_text);
-  filter_div.appendChild(del_btn);
-  filters_container.appendChild(filter_div);    
-};
+
+
+
+// Get all checkboxes in the slideshow
+const checkboxes = document.querySelectorAll(".slideshow input[type='checkbox']");
+
+// Add event listener to each checkbox
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener("change", function() {
+    if (this.checked) {
+      apf_list.push(this.value);
+    } else {
+      // Remove the value from the apf_list when the checkbox is unchecked
+      const index = apf_list.indexOf(this.value);
+      if (index > -1) {
+        apf_list.splice(index, 1);
+      }
+    }
+    displayFilters();
+  });
+});
+
+
+function sendApfListToBackend() {
+    // convert the apf_list to a JSON string
+    const apf_list_json = JSON.stringify(apf_list);
+  
+    // make a POST request to the backend endpoint with the apf_list data
+    fetch("/process_apf_list", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: apf_list_json
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Success:", data);
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  }
+  
