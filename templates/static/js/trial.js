@@ -1,4 +1,3 @@
-const contextMenu = document.querySelector(".menu");
 var delete_btn = document.getElementById("delete");
 let canvas = document.getElementById("unitCircle");
 let context = canvas.getContext("2d");
@@ -110,7 +109,6 @@ canvas.onmousedown = myDown;
 canvas.onmouseup = myUp;
 canvas.onmousemove = myMove;
 canvas.onclick = (event) => {
-  contextMenu.style.visibility = "hidden";
   draw_phase = true;
   startX = parseInt(event.clientX - rect.left);
   startY = parseInt(event.clientY - rect.top);
@@ -219,10 +217,6 @@ canvas.addEventListener('contextmenu', function (e) {
       index++;
   }
   if (menu) {
-      //contextMenu.style.left = `${startX}px`;
-      //contextMenu.style.top = `${startY + 130}px`;
-      //contextMenu.style.visibility = "visible";
-      contextMenu.style.visibility = "hidden";
       shapes.splice(selected_shape, 1);
       draw_shapes(shapes);
       get_complex(shapes);
@@ -248,7 +242,6 @@ function get_complex(shapes) {
   get_graphs();
 };
 
-
 function convertToPixels(zeros, poles) {
   shapes = []
   let x = 0;
@@ -271,12 +264,8 @@ function convertToPixels(zeros, poles) {
   get_complex();
 
 };
-
 setUpPlot("magPlot",[],[],'Magnitude',"Frequency","Amplitude");
 setUpPlot("phasePlot",[],[],'Phase',"Frequency","Amplitude");
-
-
-
 
 function get_graphs(){
   console.log(zeros);
@@ -303,8 +292,6 @@ function get_graphs(){
     }
   })
 }
-
-
 
 var inputSignalChart;
 var glopalFileName;
@@ -409,46 +396,6 @@ WebFontConfig = {
   var s = document.getElementsByTagName('script')[0];
   s.parentNode.insertBefore(wf, s);
 })();
-/////////////////////////////////////////////////////
-
-// var value_input = document.getElementsByName("add_value");
-// var value_input_real ;
-// var value_input_imag ;
-// value_input[0].onclick=function(){
-//   value_input_real =value_input.value;
-//   console.log(value_input_real);
-// };
-// value_input[0].onclick=function(){
-//   value_input_imag =value_input.value;
-//   console.log(value_input_imag);
-// };
-// // Get A value from input data
-// let input_text_real = document.querySelector(".value_added_real input");
-// let input_text_imag = document.querySelector(".value_added_imag input");
-// var add_filter_btn_real = document.getElementById("add_filter_btn_real");
-// var add_filter_btn_imag = document.getElementById("add_filter_btn_imag");
-// var filters_container = document.getElementById("added_filters");
-
-// // List that contains all filters to be sent to the back-end
-// let apf_list = []
-
-// // To check if filter was already used
-// function checkList (a) {
-//     for (let i = 0; i < apf_list.length; i++){
-//         if (a == apf_list[i]){
-//             return true;
-//         }
-//     }
-//     return false;
-// };
-
-// var input_text = document.getElementById("input_imag").value;
-
-// add_filter_btn_imag.onclick = function () {
-//   console.log(input_text);
-// };
-
-
 
 // Buttons and setting up plot
 var generate_btn = document.getElementById("generate_btn");
