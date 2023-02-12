@@ -68,11 +68,16 @@ value_input_imag.value = "";
   
       // create a new element for each filter
       const filterElement = document.createElement("div");
-      filterElement.innerHTML = filter;
+      filterElement.className = "filter_container";
+      let filter_text = document.createElement("p");
+      let text = document.createTextNode(filter);
+      filter_text.appendChild(text);
+      
   
       // create a delete button for the filter
       const deleteButton = document.createElement("button");
       deleteButton.innerHTML = "Delete";
+      deleteButton.className="button";
       deleteButton.addEventListener("click", function() {
         apf_list.splice(i, 1);
         
@@ -92,6 +97,7 @@ value_input_imag.value = "";
       });
   
       // append the delete button to the filter element
+      filterElement.appendChild(filter_text);
       filterElement.appendChild(deleteButton);
   
       // append the filter element to the added_filters div

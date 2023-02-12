@@ -14,15 +14,6 @@
 <body>
     <h1 id="title">The Unit Circle Visualization</h1>
     <div class="big_container">
-        <div class="menu">
-            <div class="content">
-                <ul class="menu_list">
-                    <li class="item" id="delete">
-                        <p>Delete</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div class="container border">
             <div class="filter">
                 <div class="unit_circle">
@@ -30,7 +21,7 @@
                 </div>
                 <div class="side_menu">
                     <div class="options_list">
-                        <button class="button" onclick=""> <a href ="/allpass">All Pass Filters</a> </button>
+                        <button class="button"  id="second_page_btn">All Pass Filters</a> </button>
                     </div>
                     <div class="options_list">
                             <!-- Import Filter -->
@@ -70,7 +61,7 @@
         </div>
         <div class="container">
             <div class="options_list ">
-                <button class="signal_button1" name="signals" id="generate_btn" >Generate Signal</button>
+                <button class="button" name="signals" id="generate_btn" >Generate Signal</button>
                 <form class="upload" method=post enctype=multipart/form-data>
                     <form method=post enctype=multipart/form-data>
                         <input class="button upload_btn"  type=file name="signals" id="upload" onchange="getFileName()">
@@ -87,13 +78,179 @@
             </div>
         </div>
     </div>
+    <div class="second_page" id="second_page">
+        <div class="all_pass_container">
+            <div class="heading">
+              <button class="button " id="first_page_btn"> Home </button>
+              <h1 id="title">All Pass Filter</h1>
+            </div>
+            <div class="filter">
+              <div class="custom_Filter">
+                <h2>Custom Filter</h2>
+                <div class="value_added_real">
+                  <label class="text" >Real</label>
+                  <input class="text-field" type="text" id="input_real">
+                </div>
+                <div class="value_added_imag">
+                  <label class="text" >Imag</label>
+                  <input class="text-field" type="text" id="input_imag">
+                </div>
+                <button class="button" id="add_filter_btn" name="add_value">Add</button>
+              </div>
+              <div class=" signals" id="input-signal">
+              </div>
+              <div class="signals" id="output-signal">
+              </div>
+            </div>
+            
+            <div class="filters_list">
+              <div class="list">
+                <h2 id="title1">Filters Menu</h2>
+                <div class="added_filters" id="added_filters">
+                </div>
+              </div>
+              <div class="property">
+                <section class="slideshow" style="height: 250px;">
+                  <span id="target-1"></span>
+                  <span id="target-2"></span>
+                  <span id="target-3"></span>
+                  <span id="target-4"></span>
+                  <span id="target-5"></span>
+                  <span id="target-6"></span>
+                  <span id="target-7"></span>
+                  <span id="target-8"></span>
+                  <span id="target-9"></span>
+                  <span id="target-10"></span>
+                  <span id="target-11"></span>
+                  <div class="slideshow-item item-1">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.9.png" />
+                      <input  type="checkbox" value="-0.9">-0.9
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.9.png" alt="" />
+                      <input  type="checkbox" value="0.9">0.9
+                    </div>
+                    <a href="#target-10" class="arrow arrow-prev"></a>
+                    <a href="#target-2" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-2">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.8.png" alt="-0.8" />
+                      <input  type="checkbox" value="-0.8">-0.8
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.8.png" alt="" />
+                      <input  type="checkbox" value="0.8">0.8
+                    </div>
+                    <a href="#target-1" class="arrow arrow-prev"></a>
+                    <a href="#target-3" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-3">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.7.png" alt="" />
+                      <input  type="checkbox"  value="-0.7">-0.7
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.7.png" alt="" />
+                      <input  type="checkbox" value="0.7">0.7
+                    </div>
+                    <a href="#target-2" class="arrow arrow-prev"></a>
+                    <a href="#target-4" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-4">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.6.png" alt="" />
+                      <input  type="checkbox" value="-0.6">-0.6
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.6.png" alt="" />
+                      <input  type="checkbox" value="0.6">0.6
+                    </div>
+                    <a href="#target-3" class="arrow arrow-prev"></a>
+                    <a href="#target-5" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-5">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.5.png" alt="" />
+                      <input  type="checkbox" value="-0.5">-0.5
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.5.png" alt="" />
+                      <input  type="checkbox"  value="0.5">0.5
+                    </div>
+                    <a href="#target-4" class="arrow arrow-prev"></a>
+                    <a href="#target-6" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-6">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.4.png" alt="" />
+                      <input  type="checkbox" value="-0.4">-0.4
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.4.png" alt="" />
+                      <input  type="checkbox"  value="0.4">0.4
+                    </div>
+                    <a href="#target-5" class="arrow arrow-prev"></a>
+                    <a href="#target-7" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-7">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.3.png" alt="" />
+                      <input  type="checkbox" value="-0.3">-0.3
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.3.png" alt="" />
+                      <input  type="checkbox" value="0.3">0.3
+                    </div>
+                    <a href="#target-6" class="arrow arrow-prev"></a>
+                    <a href="#target-8" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-8">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.2.png" alt="" />
+                      <input  type="checkbox" value="-0.2">-0.2
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.2.png" alt="" />
+                      <input  type="checkbox" value="0.2">0.2
+                    </div>
+                    <a href="#target-7" class="arrow arrow-prev"></a>
+                    <a href="#target-9" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-9">
+                    <div class="image-box">
+                      <img src="..\static\img\-0.1.png" alt="" />
+                      <input  type="checkbox" value="-0.1">-0.1
+                    </div>
+                    <div class="image-box">
+                      <img src="..\static\img\0.1.png" alt="" />
+                      <input  type="checkbox" value="0.1">0.1
+                    </div>
+                    <a href="#target-8" class="arrow arrow-prev"></a>
+                    <a href="#target-10" class="arrow arrow-next"></a>
+                  </div>
+                  <div class="slideshow-item item-10">
+                    <div class="image-box">
+                      <img src="..\static\img\0.png" alt="" />
+                      <input  type="checkbox" value="0">0
+                    </div>
+                    <a href="#target-9" class="arrow arrow-prev"></a>
+                    <a href="#target-1" class="arrow arrow-next"></a>
+                  </div>
+                  
+                </section>
+              </div>
+            </div>
+          </div>
+    </div>
 </body>
 <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 <script src="../static/js/trial.js"></script>
+<script src="../static/js/allpass.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/draggable-points.js"></script>
-
 </html>
